@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  padding: 2em;
+  max-width: 700px;
+  margin: auto;
+}
+
+textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 1em;
+}
+
+button {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+}
+
+pre {
+  margin-top: 1em;
+  background: #f0f0f0;
+  padding: 1em;
+}
