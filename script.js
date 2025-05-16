@@ -3,7 +3,7 @@ const queryInput = document.getElementById("query");
 const resultDisplay = document.getElementById("result");
 
 // 👇 修改为你的 Cloudflare Worker GraphQL URL
-const GRAPHQL_ENDPOINT = "https://api.hengwei1104.com/graphql";
+const GRAPHQL_ENDPOINT = "https://api.hengweiz.top/graphql";
 
 
 form.addEventListener("submit", async (e) => {
