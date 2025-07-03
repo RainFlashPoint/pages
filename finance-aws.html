@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外金融系统分层架构</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #0f0f23;
+            color: #ffffff;
+            height: 100vh;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+        
+        .architecture-layers {
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            gap: 18px;
+            height: 100%;
+            position: relative;
+        }
+        
+        /* Vertical Flow Arrows */
+        .flow-arrows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .vertical-arrow {
+            position: absolute;
+            left: 120px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--from-color), var(--to-color));
+            opacity: 0.6;
+        }
+        
+        .vertical-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid var(--to-color);
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            animation: pulse-down 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-down {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .layer {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 20px;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        
+        .layer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--layer-color);
+            border-radius: 20px 0 0 20px;
+            box-shadow: 0 0 20px var(--layer-color);
+        }
+        
+        .layer:hover {
+            transform: translateX(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--layer-color);
+        }
+        
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+        
+        .layer-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--layer-color), var(--layer-color-dark, var(--layer-color)));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            animation: numberPulse 3s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .layer-number::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--layer-color);
+            border-radius: 20px;
+            opacity: 0;
+            animation: layerRing 3s ease-in-out infinite;
+        }
+        
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes layerRing {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+        
+        .layer-details {
+            flex: 1;
+        }
+        
+        .layer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        
+        .layer-subtitle {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.3;
+        }
+        
+        .layer-animation {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+        }
+        
+        /* CloudFlare + AWS 爆炸效果 */
+        .cloudflare-aws-explosion {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .cf-logo {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            animation: cfPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px #ff6b35;
+        }
+        
+        .aws-logo {
+            width: 35px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 15px;
+            right: 10px;
+            animation: awsPulse 2s ease-in-out infinite 0.5s;
+            box-shadow: 0 0 20px #ff9900;
+        }
+        
+        .energy-burst {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: energyBurst 1.5s ease-out infinite;
+        }
+        
+        .energy-burst:nth-child(3) { top: 20px; left: 40px; animation-delay: 0s; }
+        .energy-burst:nth-child(4) { top: 40px; left: 20px; animation-delay: 0.3s; }
+        .energy-burst:nth-child(5) { top: 50px; left: 50px; animation-delay: 0.6s; }
+        .energy-burst:nth-child(6) { top: 30px; left: 60px; animation-delay: 0.9s; }
+        
+        @keyframes cfPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px #ff6b35; }
+            50% { transform: scale(1.3); box-shadow: 0 0 40px #ff6b35, 0 0 60px #ff6b35; }
+        }
+        
+        @keyframes awsPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px #ff9900; }
+            50% { transform: scale(1.2); box-shadow: 0 0 40px #ff9900, 0 0 60px #ff9900; }
+        }
+        
+        @keyframes energyBurst {
+            0% { transform: scale(0); opacity: 1; box-shadow: 0 0 10px #00d4ff; }
+            50% { transform: scale(1.5); opacity: 0.8; box-shadow: 0 0 20px #00d4ff; }
+            100% { transform: scale(3); opacity: 0; box-shadow: 0 0 30px #00d4ff; }
+        }
+        
+        /* SSR 代码生成动画 */
+        .ssr-code-gen {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .code-screen {
+            width: 60px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            border-radius: 6px;
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            border: 2px solid #4ecdc4;
+            overflow: hidden;
+        }
+        
+        .code-line {
+            width: 80%;
+            height: 2px;
+            background: #4ecdc4;
+            position: absolute;
+            left: 4px;
+            border-radius: 1px;
+            animation: codeTyping 3s ease-in-out infinite;
+        }
+        
+        .code-line:nth-child(1) { top: 8px; animation-delay: 0s; }
+        .code-line:nth-child(2) { top: 14px; width: 60%; animation-delay: 0.5s; }
+        .code-line:nth-child(3) { top: 20px; width: 90%; animation-delay: 1s; }
+        .code-line:nth-child(4) { top: 26px; width: 40%; animation-delay: 1.5s; }
+        
+        @keyframes codeTyping {
+            0%, 100% { width: 0; }
+            50% { width: 80%; }
+        }
+        
+        /* 安全护盾爆炸效果 */
+        .security-explosion {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .shield-core {
+            width: 40px;
+            height: 45px;
+            background: linear-gradient(135deg, #45b7d1, #00d4ff);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            animation: shieldCore 2s ease-in-out infinite;
+            box-shadow: 0 0 30px #45b7d1;
+        }
+        
+        .shield-ring {
+            position: absolute;
+            border: 2px solid #45b7d1;
+            border-radius: 50%;
+            animation: shieldRing 2s ease-out infinite;
+        }
+        
+        .shield-ring:nth-child(2) { width: 50px; height: 50px; top: 12px; left: 15px; animation-delay: 0s; }
+        .shield-ring:nth-child(3) { width: 65px; height: 65px; top: 5px; left: 7px; animation-delay: 0.3s; }
+        .shield-ring:nth-child(4) { width: 80px; height: 80px; top: 0; left: 0; animation-delay: 0.6s; }
+        
+        @keyframes shieldCore {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px #45b7d1; }
+            50% { transform: scale(1.1); box-shadow: 0 0 50px #45b7d1, 0 0 70px #00d4ff; }
+        }
+        
+        @keyframes shieldRing {
+            0% { opacity: 1; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+        
+        /* 计算节点集群 */
+        .compute-cluster {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .compute-node {
+            width: 15px;
+            height: 20px;
+            background: linear-gradient(135deg, #96ceb4, #5fb85f);
+            border-radius: 3px;
+            position: absolute;
+            animation: nodeActivity 2s ease-in-out infinite;
+            box-shadow: 0 0 10px #96ceb4;
+        }
+        
+        .compute-node:nth-child(1) { top: 10px; left: 10px; animation-delay: 0s; }
+        .compute-node:nth-child(2) { top: 10px; left: 35px; animation-delay: 0.3s; }
+        .compute-node:nth-child(3) { top: 10px; left: 60px; animation-delay: 0.6s; }
+        .compute-node:nth-child(4) { top: 45px; left: 10px; animation-delay: 0.9s; }
+        .compute-node:nth-child(5) { top: 45px; left: 35px; animation-delay: 1.2s; }
+        .compute-node:nth-child(6) { top: 45px; left: 60px; animation-delay: 1.5s; }
+        
+        .load-wave {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            width: 60px;
+            height: 8px;
+            background: linear-gradient(90deg, #feca57, #ff6b6b, #96ceb4);
+            border-radius: 4px;
+            animation: loadIndicator 3s ease-in-out infinite;
+        }
+        
+        @keyframes nodeActivity {
+            0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
+            50% { transform: scaleY(1.2); opacity: 1; box-shadow: 0 0 20px #96ceb4; }
+        }
+        
+        @keyframes loadIndicator {
+            0%, 100% { transform: scaleX(0.3); }
+            50% { transform: scaleX(1.2); }
+        }
+        
+        /* 业务数据流 */
+        .business-flow {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .flow-stream {
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(135deg, #feca57, #ffdd59);
+            border-radius: 50%;
+            position: absolute;
+            animation: businessFlow 2s linear infinite;
+            box-shadow: 0 0 15px #feca57;
+        }
+        
+        .flow-stream:nth-child(1) { top: 10px; left: 10px; animation-delay: 0s; }
+        .flow-stream:nth-child(2) { top: 30px; left: 10px; animation-delay: 0.4s; }
+        .flow-stream:nth-child(3) { top: 50px; left: 10px; animation-delay: 0.8s; }
+        
+        @keyframes businessFlow {
+            0% { transform: translateX(0) scale(1); opacity: 1; }
+            100% { transform: translateX(60px) scale(0.3); opacity: 0; }
+        }
+        
+        /* 数据库星云 */
+        .database-nebula {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .db-core {
+            width: 40px;
+            height: 12px;
+            background: linear-gradient(135deg, #ff9ff3, #bd5eff);
+            border-radius: 6px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            animation: dbCore 2s ease-in-out infinite;
+            box-shadow: 0 0 25px #ff9ff3;
+        }
+        
+        .db-ring {
+            position: absolute;
+            border: 1px solid #ff9ff3;
+            border-radius: 50%;
+            animation: dbRing 3s linear infinite;
+        }
+        
+        .db-ring:nth-child(2) { width: 50px; height: 50px; top: 15px; left: 15px; }
+        .db-ring:nth-child(3) { width: 65px; height: 65px; top: 7px; left: 7px; animation-delay: 1s; }
+        .db-ring:nth-child(4) { width: 80px; height: 80px; top: 0; left: 0; animation-delay: 2s; }
+        
+        .data-particle {
+            width: 3px;
+            height: 3px;
+            background: #bd5eff;
+            border-radius: 50%;
+            position: absolute;
+            animation: dataOrbit 4s linear infinite;
+        }
+        
+        .data-particle:nth-child(5) { animation-delay: 0s; }
+        .data-particle:nth-child(6) { animation-delay: 1s; }
+        .data-particle:nth-child(7) { animation-delay: 2s; }
+        
+        @keyframes dbCore {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px #ff9ff3; }
+            50% { transform: scale(1.1); box-shadow: 0 0 40px #ff9ff3, 0 0 60px #bd5eff; }
+        }
+        
+        @keyframes dbRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes dataOrbit {
+            from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+        }
+        
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .component {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .component:hover {
+            transform: translateY(-6px);
+            border-color: var(--layer-color);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .component::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--layer-color) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .component:hover::before {
+            opacity: 0.15;
+        }
+        
+        .component-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .component-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--layer-color), var(--layer-color-dark, var(--layer-color)));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .component-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .component-desc {
+            font-size: 0.7rem;
+            color: #bbb;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 6px;
+        }
+        
+        .component-advantage {
+            font-size: 0.65rem;
+            color: var(--layer-color);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Layer Colors */
+        .layer-1 { --layer-color: #ff6b6b; --layer-color-dark: #e55555; }
+        .layer-2 { --layer-color: #4ecdc4; --layer-color-dark: #3cb8b0; }
+        .layer-3 { --layer-color: #45b7d1; --layer-color-dark: #3a9bc1; }
+        .layer-4 { --layer-color: #96ceb4; --layer-color-dark: #7fb89a; }
+        .layer-5 { --layer-color: #feca57; --layer-color-dark: #f5b942; }
+        .layer-6 { --layer-color: #ff9ff3; --layer-color-dark: #f285e3; }
+        
+        .performance-footer {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .perf-metric {
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .perf-metric:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .perf-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 4px;
+            animation: valueCount 3s ease-in-out infinite;
+        }
+        
+        .perf-label {
+            font-size: 0.7rem;
+            color: #888;
+        }
+        
+        @keyframes valueCount {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .layer {
+                grid-template-columns: 200px 1fr;
+                gap: 16px;
+            }
+            
+            .components-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .layer {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .layer-header {
+                justify-content: center;
+            }
+            
+            .components-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            }
+            
+            .header h1 { font-size: 1.5rem; }
+            .container { padding: 10px; }
+            
+            .layer-animation {
+                position: relative;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>海外金融系统分层架构</h1>
+                <p>横向分层 • 多地区部署 • 云原生微服务 • 高并发架构</p>
+            </div>
+        </div>
+        
+        <div class="architecture-layers">
+            <div class="flow-arrows">
+                <div class="vertical-arrow" style="top: calc(16.66% - 8px); height: calc(16.66% - 8px); --from-color: #ff6b6b; --to-color: #4ecdc4;"></div>
+                <div class="vertical-arrow" style="top: calc(33.33% - 8px); height: calc(16.66% - 8px); --from-color: #4ecdc4; --to-color: #45b7d1;"></div>
+                <div class="vertical-arrow" style="top: calc(50% - 8px); height: calc(16.66% - 8px); --from-color: #45b7d1; --to-color: #96ceb4;"></div>
+                <div class="vertical-arrow" style="top: calc(66.66% - 8px); height: calc(16.66% - 8px); --from-color: #96ceb4; --to-color: #feca57;"></div>
+                <div class="vertical-arrow" style="top: calc(83.33% - 8px); height: calc(16.66% - 8px); --from-color: #feca57; --to-color: #ff9ff3;"></div>
+            </div>
+            
+            <!-- Layer 1: CDN & Edge -->
+            <div class="layer layer-1">
+                <div class="layer-header">
+                    <div class="layer-number">1</div>
+                    <div class="layer-details">
+                        <div class="layer-title">CDN & 边缘层</div>
+                        <div class="layer-subtitle">全球内容分发与边缘计算</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="cloudflare-aws-explosion">
+                        <div class="cf-logo"></div>
+                        <div class="aws-logo"></div>
+                        <div class="energy-burst"></div>
+                        <div class="energy-burst"></div>
+                        <div class="energy-burst"></div>
+                        <div class="energy-burst"></div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🌐</div>
+                            <div class="component-name">CloudFlare CDN</div>
+                        </div>
+                        <div class="component-desc">275+全球节点<br>DDoS防护与WAF<br>SSL/TLS终止优化</div>
+                        <div class="component-advantage">优势：99.99%可用性，毫秒级响应</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">⚡</div>
+                            <div class="component-name">CloudFlare Workers</div>
+                        </div>
+                        <div class="component-desc">V8边缘计算<br>地理位置路由<br>实时数据处理</div>
+                        <div class="component-advantage">优势：零冷启动，全球一致性能</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🔒</div>
+                            <div class="component-name">边缘安全</div>
+                        </div>
+                        <div class="component-desc">Bot防护<br>速率限制<br>地理封锁</div>
+                        <div class="component-advantage">优势：阻挡99%恶意流量</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layer 2: Frontend -->
+            <div class="layer layer-2">
+                <div class="layer-header">
+                    <div class="layer-number">2</div>
+                    <div class="layer-details">
+                        <div class="layer-title">前端渲染层</div>
+                        <div class="layer-subtitle">TypeScript + SSR + 移动端</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="ssr-code-gen">
+                        <div class="code-screen">
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">⚛️</div>
+                            <div class="component-name">Next.js + TypeScript</div>
+                        </div>
+                        <div class="component-desc">App Router架构<br>SSR/SSG渲染<br>动态国际化路由</div>
+                        <div class="component-advantage">优势：SEO友好，首屏1秒内加载</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🟢</div>
+                            <div class="component-name">Node.js 服务</div>
+                        </div>
+                        <div class="component-desc">Express.js框架<br>会话管理<br>API代理聚合</div>
+                        <div class="component-advantage">优势：高并发，事件驱动</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">📱</div>
+                            <div class="component-name">移动应用</div>
+                        </div>
+                        <div class="component-desc">React Native<br>推送通知<br>生物识别认证</div>
+                        <div class="component-advantage">优势：一套代码双平台</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layer 3: Gateway -->
+            <div class="layer layer-3">
+                <div class="layer-header">
+                    <div class="layer-number">3</div>
+                    <div class="layer-details">
+                        <div class="layer-title">网关路由层</div>
+                        <div class="layer-subtitle">请求路由与流量管理</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="security-explosion">
+                        <div class="shield-core"></div>
+                        <div class="shield-ring"></div>
+                        <div class="shield-ring"></div>
+                        <div class="shield-ring"></div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🚪</div>
+                            <div class="component-name">AWS API Gateway</div>
+                        </div>
+                        <div class="component-desc">RESTful/GraphQL<br>请求转换<br>API版本管理</div>
+                        <div class="component-advantage">优势：自动扩容，10万QPS支持</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🔐</div>
+                            <div class="component-name">认证中心</div>
+                        </div>
+                        <div class="component-desc">JWT令牌验证<br>OAuth 2.0集成<br>多因素认证</div>
+                        <div class="component-advantage">优势：微秒级验证，无状态</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">⚖️</div>
+                            <div class="component-name">负载均衡</div>
+                        </div>
+                        <div class="component-desc">应用负载均衡器<br>健康检查<br>跨区域分发</div>
+                        <div class="component-advantage">优势：99.999%可用性</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layer 4: Compute -->
+            <div class="layer layer-4">
+                <div class="layer-header">
+                    <div class="layer-number">4</div>
+                    <div class="layer-details">
+                        <div class="layer-title">计算运行层</div>
+                        <div class="layer-subtitle">双运行时策略</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="compute-cluster">
+                        <div class="compute-node"></div>
+                        <div class="compute-node"></div>
+                        <div class="compute-node"></div>
+                        <div class="compute-node"></div>
+                        <div class="compute-node"></div>
+                        <div class="compute-node"></div>
+                        <div class="load-wave"></div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🚀</div>
+                            <div class="component-name">AWS Lambda</div>
+                        </div>
+                        <div class="component-desc">Node.js轻量服务<br>事件驱动架构<br>按需计费</div>
+                        <div class="component-advantage">优势：毫秒计费，自动扩容至1000实例</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">📦</div>
+                            <div class="component-name">ECS Fargate</div>
+                        </div>
+                        <div class="component-desc">Spring Boot容器<br>无服务器容器<br>服务发现网格</div>
+                        <div class="component-advantage">优势：秒级启动，支持万级并发</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🔄</div>
+                            <div class="component-name">自动扩容</div>
+                        </div>
+                        <div class="component-desc">指标驱动扩容<br>预测性扩容<br>多可用区部署</div>
+                        <div class="component-advantage">优势：秒级响应流量变化</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layer 5: Business -->
+            <div class="layer layer-5">
+                <div class="layer-header">
+                    <div class="layer-number">5</div>
+                    <div class="layer-details">
+                        <div class="layer-title">业务服务层</div>
+                        <div class="layer-subtitle">核心金融服务</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="business-flow">
+                        <div class="flow-stream"></div>
+                        <div class="flow-stream"></div>
+                        <div class="flow-stream"></div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">💳</div>
+                            <div class="component-name">授信服务</div>
+                        </div>
+                        <div class="component-desc">多国放贷逻辑<br>动态产品参数<br>风险评估集成</div>
+                        <div class="component-advantage">优势：500ms内完成授信决策</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">💰</div>
+                            <div class="component-name">还款服务</div>
+                        </div>
+                        <div class="component-desc">多币种处理<br>灵活还款计划<br>自动扣款</div>
+                        <div class="component-advantage">优势：99.9%支付成功率</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🛡️</div>
+                            <div class="component-name">风控服务</div>
+                        </div>
+                        <div class="component-desc">实时反欺诈<br>机器学习评分<br>合规监控</div>
+                        <div class="component-advantage">优势：100ms内风险评估</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">📞</div>
+                            <div class="component-name">催收服务</div>
+                        </div>
+                        <div class="component-desc">多语言催收<br>自动化工作流<br>本地合规</div>
+                        <div class="component-advantage">优势：提升回收率30%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layer 6: Data -->
+            <div class="layer layer-6">
+                <div class="layer-header">
+                    <div class="layer-number">6</div>
+                    <div class="layer-details">
+                        <div class="layer-title">数据存储层</div>
+                        <div class="layer-subtitle">分布式存储与中间件</div>
+                    </div>
+                </div>
+                <div class="layer-animation">
+                    <div class="database-nebula">
+                        <div class="db-core"></div>
+                        <div class="db-ring"></div>
+                        <div class="db-ring"></div>
+                        <div class="db-ring"></div>
+                        <div class="data-particle"></div>
+                        <div class="data-particle"></div>
+                        <div class="data-particle"></div>
+                    </div>
+                </div>
+                <div class="components-grid">
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🗄️</div>
+                            <div class="component-name">MySQL 集群</div>
+                        </div>
+                        <div class="component-desc">区域数据库集群<br>主从复制<br>数据主权合规</div>
+                        <div class="component-advantage">优势：10万QPS读写能力</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">⚡</div>
+                            <div class="component-name">Redis 缓存</div>
+                        </div>
+                        <div class="component-desc">分布式缓存<br>会话存储<br>实时数据同步</div>
+                        <div class="component-advantage">优势：亚毫秒级响应</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">📨</div>
+                            <div class="component-name">消息队列</div>
+                        </div>
+                        <div class="component-desc">SQS异步处理<br>死信队列<br>事件驱动架构</div>
+                        <div class="component-advantage">优势：百万级消息处理</div>
+                    </div>
+                    <div class="component">
+                        <div class="component-header">
+                            <div class="component-icon">🌐</div>
+                            <div class="component-name">共享中间件</div>
+                        </div>
+                        <div class="component-desc">国际化翻译<br>通知网关<br>配置中心</div>
+                        <div class="component-advantage">优势：支持50+语言实时翻译</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="performance-footer">
+            <div class="perf-metric">
+                <div class="perf-value">50万+</div>
+                <div class="perf-label">峰值QPS</div>
+            </div>
+            <div class="perf-metric">
+                <div class="perf-value">&lt;300ms</div>
+                <div class="perf-label">端到端响应</div>
+            </div>
+            <div class="perf-metric">
+                <div class="perf-value">99.99%</div>
+                <div class="perf-label">可用性</div>
+            </div>
+            <div class="perf-metric">
+                <div class="perf-value">4大洲</div>
+                <div class="perf-label">全球部署</div>
+            </div>
+            <div class="perf-metric">
+                <div class="perf-value">&lt;50ms</div>
+                <div class="perf-label">CDN响应</div>
+            </div>
+            <div class="perf-metric">
+                <div class="perf-value">1000x</div>
+                <div class="perf-label">弹性扩容</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
