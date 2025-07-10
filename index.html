@@ -1,15 +1,9 @@
-、<h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        📈 考虑技术演进的3年成本预测
-                    </h2>
-                    
-                    <div style="background: #f0f9ff; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #3b82f6;">
-                        <h3 style="color: #1e40af; margin-bottom: 15px;">🚀 重要假设：Serverless技术演进趋势</h3>
-                        <p><strong>随着技术成熟和团队经验积累，Serverless<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>AWS海外技术架构 - 交互式架构图</title>
+    <title>海外容器化架构云平台选型 - 2025年7月</title>
     <style>
         * {
             margin: 0;
@@ -18,76 +12,54 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #1e1e1e;
+            color: #2d3748;
             min-height: 100vh;
+            line-height: 1.6;
         }
         
         .header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid #667eea;
+            backdrop-filter: blur(15px);
+            border-bottom: 4px solid #667eea;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
         
         .header h1 {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1e1e1e;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .header .subtitle {
-            font-size: 18px;
-            color: #4b5563;
-            margin-bottom: 25px;
-        }
-        
-        .cloud-comparison {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a202c;
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .cloud-item {
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 100;
         }
         
-        .cloud-aws {
-            background: linear-gradient(135deg, #ff9500, #ff6b00);
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
-        }
-        
-        .cloud-alibaba {
-            background: #ff6a00;
-            color: white;
-            opacity: 0.8;
-        }
-        
-        .cloud-item:hover {
-            transform: scale(1.05);
-            opacity: 1 !important;
-        }
-        
-        .action-buttons {
+        .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .btn {
+        .nav-btn {
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
@@ -95,1467 +67,1077 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            font-size: 14px;
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
         }
         
-        .btn-primary {
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .cost-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-left: 6px solid;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .cost-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .huawei-card { border-left-color: #22c55e; }
+        .alibaba-card { border-left-color: #3b82f6; }
+        .aws-card { border-left-color: #f87171; }
+        
+        .cost-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .cost-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a202c;
+        }
+        
+        .cost-amount {
+            text-align: right;
+        }
+        
+        .cost-amount-usd {
+            font-size: 18px;
+            color: #6b7280;
+        }
+        
+        .cost-amount-rmb {
+            font-size: 28px;
+            font-weight: 800;
+            color: #667eea;
+        }
+        
+        .cost-rank {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .rank-1 { background: #22c55e; }
+        .rank-2 { background: #3b82f6; }
+        .rank-3 { background: #f87171; }
+        
+        .cost-details {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .cost-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table thead {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
         
-        .btn-secondary {
-            background: #f3f4f6;
-            color: #374151;
-            border: 2px solid #d1d5db;
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        .comparison-table tbody tr:hover {
+            background: #f8fafc;
         }
         
-        .main-content {
-            padding: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .architecture-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-        
-        .architecture-svg {
+        .architecture-diagram {
             width: 100%;
-            height: 900px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 500px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+        
+        .diagram-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #2d3748;
+        }
+        
+        .arch-layer {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .arch-component {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 10px;
+            min-width: 150px;
+            text-align: center;
+            border-left: 4px solid #667eea;
         }
         
         .layer-title {
-            font-size: 14px;
-            font-weight: 600;
-            fill: #dc2626;
-        }
-        
-        .service-text {
-            font-size: 12px;
-            font-weight: 500;
-            fill: #1e1e1e;
-        }
-        
-        .service-text-small {
-            font-size: 10px;
-            font-weight: 400;
-            fill: #4b5563;
-        }
-        
-        .connection-line {
-            stroke: #9ca3af;
-            stroke-width: 2;
-            fill: none;
-            marker-end: url(#arrow);
-            transition: all 0.3s ease;
-        }
-        
-        .main-flow {
-            stroke: #667eea;
-            stroke-width: 3;
-            fill: none;
-            marker-end: url(#arrow-main);
-            stroke-dasharray: 20, 10;
-            animation: flow 3s ease-in-out infinite;
-        }
-        
-        .dashed-line {
-            stroke-dasharray: 6,3;
-            stroke: #d1d5db;
-            stroke-width: 1.5;
-            fill: none;
-            opacity: 0.6;
-        }
-        
-        .service-item {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .service-item:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 6px 20px rgba(0,0,0,0.15));
-        }
-        
-        .service-item.active {
-            animation: pulse 1.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes flow {
-            0% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 30; }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 2px 10px rgba(102, 126, 234, 0.3)); }
-            100% { transform: scale(1.1); filter: drop-shadow(0 8px 25px rgba(102, 126, 234, 0.6)); }
-        }
-        
-        .tooltip {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            max-width: 280px;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        
-        .tooltip.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .tooltip::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 20px;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-bottom: 5px solid rgba(0, 0, 0, 0.9);
-        }
-        
-        .tooltip h4 {
-            color: #fbbf24;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .tooltip .description {
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-        
-        .tooltip .key-feature {
-            color: #34d399;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .tech-philosophy {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 2px solid #0284c7;
-        }
-        
-        .tech-philosophy h3 {
-            color: #0c4a6e;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a5568;
             margin-bottom: 15px;
-            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 6px;
         }
         
-        .tech-philosophy p {
-            color: #0369a1;
-            line-height: 1.7;
-            font-size: 16px;
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
         
-        .entry-group { fill: #f0f9ff; stroke: #0ea5e9; stroke-width: 2; }
-        .dns-group { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; }
-        .cdn-group { fill: #fff7ed; stroke: #f97316; stroke-width: 2; }
-        .security-group { fill: #fef2f2; stroke: #ef4444; stroke-width: 2; }
-        .lb-group { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; }
-        .app-group { fill: #faf5ff; stroke: #a855f7; stroke-width: 2; }
-        .compute-group { fill: #ecfdf5; stroke: #10b981; stroke-width: 2; }
-        .data-group { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2; }
-        .storage-group { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2; }
-        .message-group { fill: #f0f9ff; stroke: #0284c7; stroke-width: 2; }
-        .monitor-group { fill: #fdf2f8; stroke: #ec4899; stroke-width: 2; }
-        
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 10000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.show {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .modal-content {
+        .advantage-card {
             background: white;
-            border-radius: 15px;
-            max-width: 95%;
-            max-height: 90%;
-            overflow-y: auto;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+        }
+        
+        .aws-advantage { border-top-color: #f87171; }
+        .huawei-advantage { border-top-color: #22c55e; }
+        .alibaba-advantage { border-top-color: #3b82f6; }
+        
+        .advantage-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+        
+        .advantage-list {
+            list-style: none;
+        }
+        
+        .advantage-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+            padding-left: 20px;
         }
         
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-        
-        .close-btn {
+        .advantage-list li:before {
+            content: "✓";
             position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-            z-index: 1;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
         }
         
-        .close-btn:hover {
-            background: #f0f0f0;
-            color: #000;
+        h1 {
+            color: #1a202c;
+            font-size: 36px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #2d3748;
+            font-size: 28px;
+            margin: 35px 0 25px 0;
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+        }
+        
+        h3 {
+            color: #4a5568;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+        
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .success-box {
+            background: #f0fdf4;
+            border: 1px solid #22c55e;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
         }
         
         @media (max-width: 768px) {
-            .cloud-comparison {
-                flex-direction: column;
-                align-items: center;
+            .cost-grid,
+            .advantage-grid {
+                grid-template-columns: 1fr;
             }
             
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .architecture-svg {
-                height: 700px;
+            .main-content {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🚀 AWS海外技术架构全景图</h1>
-        <div class="subtitle">主动技术推动用户体验 • 按量计费驱动性能优化 • 全球化部署架构</div>
-        <div class="cloud-comparison">
-            <div class="cloud-item cloud-aws" id="awsTab">AWS (当前选择)</div>
-            <div class="cloud-item cloud-alibaba" id="alibabaTab">阿里云架构</div>
+        <h1>☁️ 海外容器化架构云平台选型</h1>
+        <div style="font-size: 22px; color: #4a5568; margin-bottom: 15px; font-weight: 600;">
+            AWS vs 华为云 vs 阿里云 海外业务技术对比
         </div>
-        <div class="action-buttons">
-            <button class="btn btn-primary" id="showReportBtn">📊 详细方案对比报告</button>
-            <button class="btn btn-secondary" id="showCostBtn">💰 成本对比分析</button>
-            <a class="btn btn-secondary" href="#architecture">🔍 查看架构详情</a>
+        <div style="font-size: 16px; color: #718096;">
+            2025年7月 | 基于容器化架构 | 海外多区域部署
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav-buttons">
+            <a href="#config" class="nav-btn">⚙️ 容器化配置</a>
+            <a href="#costs" class="nav-btn">💰 成本对比</a>
+            <a href="#architecture" class="nav-btn">🏗️ 架构设计</a>
+            <a href="#technical" class="nav-btn">🔧 技术差异</a>
+            <a href="#analysis" class="nav-btn">📊 优劣分析</a>
+            <a href="#recommendation" class="nav-btn">🎯 选型建议</a>
         </div>
     </div>
 
     <div class="main-content">
-        <div class="tech-philosophy">
-            <h3>🎯 技术理念：主动技术推动用户体验</h3>
-            <p>💡 <strong>AWS按量计费不仅是成本模型，更是技术进化的催化剂</strong>。当每一毫秒的执行时间都直接影响成本，开发团队会自然而然地追求<strong>极致的代码效率</strong>。这种经济驱动力让技术优化从"可选项"变成"必需品"，形成了一个美妙的增长飞轮：<span style="color: #667eea; font-weight: bold;">更快的代码 → 更好的体验 → 更多的用户 → 更强的技术投入 → 持续的创新突破</span>。</p>
-        </div>
-
-        <h2 style="font-size: 24px; margin-bottom: 20px; color: #1e40af;" id="architectureTitle">🧩 AWS架构详情总览</h2>
-        
-        <div class="architecture-section" id="architecture">
-            <svg class="architecture-svg" viewBox="0 0 1000 900" id="awsArchitecture">
-                <defs>
-                    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                        <path d="M0,0 L8,3 L0,6 Z" fill="#9ca3af"/>
-                    </marker>
-                    <marker id="arrow-main" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                        <path d="M0,0 L8,3 L0,6 Z" fill="#667eea"/>
-                    </marker>
-                </defs>
-
-                <!-- 用户层 -->
-                <rect class="entry-group" x="400" y="20" width="200" height="60" rx="8"/>
-                <text class="layer-title" x="410" y="35">① 全球用户</text>
-                <g class="service-item" data-service="global-users">
-                    <circle cx="500" cy="60" r="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
-                    <text class="service-text" x="525" y="65">全球用户</text>
-                </g>
-
-                <!-- DNS层 -->
-                <rect class="dns-group" x="400" y="120" width="200" height="50" rx="8"/>
-                <text class="layer-title" x="410" y="135">② 智能DNS</text>
-                <g class="service-item" data-service="route53">
-                    <rect x="420" y="140" width="160" height="30" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-                    <text class="service-text" x="430" y="158">Route 53 (全球DNS)</text>
-                </g>
-
-                <!-- CDN + 边缘层 -->
-                <rect class="cdn-group" x="50" y="200" width="900" height="80" rx="8"/>
-                <text class="layer-title" x="60" y="215">③ CDN + 边缘加速</text>
-                <g class="service-item" data-service="cloudfront">
-                    <rect x="80" y="230" width="200" height="40" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-                    <text class="service-text" x="90" y="255">CloudFront (200+节点)</text>
-                </g>
-                <g class="service-item" data-service="lambda-edge">
-                    <rect x="310" y="230" width="180" height="40" rx="6" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
-                    <text class="service-text" x="320" y="255">Lambda@Edge</text>
-                </g>
-
-                <!-- 安全层 -->
-                <rect class="security-group" x="50" y="310" width="900" height="60" rx="8"/>
-                <text class="layer-title" x="60" y="325">④ 安全防护</text>
-                <g class="service-item" data-service="waf">
-                    <rect x="80" y="335" width="100" height="30" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
-                    <text class="service-text" x="90" y="355">WAF</text>
-                </g>
-                <g class="service-item" data-service="shield">
-                    <rect x="210" y="335" width="120" height="30" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
-                    <text class="service-text" x="220" y="355">Shield DDoS</text>
-                </g>
-
-                <!-- 负载均衡层 -->
-                <rect class="lb-group" x="50" y="400" width="900" height="60" rx="8"/>
-                <text class="layer-title" x="60" y="415">⑤ 负载均衡</text>
-                <g class="service-item" data-service="alb">
-                    <rect x="80" y="425" width="150" height="30" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
-                    <text class="service-text" x="90" y="445">ALB (7层)</text>
-                </g>
-                <g class="service-item" data-service="nlb">
-                    <rect x="260" y="425" width="150" height="30" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
-                    <text class="service-text" x="270" y="445">NLB (4层)</text>
-                </g>
-
-                <!-- 应用服务层 -->
-                <rect class="app-group" x="50" y="490" width="900" height="100" rx="8"/>
-                <text class="layer-title" x="60" y="505">⑥ 应用服务层</text>
-                <g class="service-item" data-service="lambda">
-                    <rect x="80" y="520" width="140" height="60" rx="6" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
-                    <text class="service-text" x="90" y="540">Lambda</text>
-                    <text class="service-text-small" x="90" y="555">按请求计费</text>
-                    <text class="service-text-small" x="90" y="570">性能驱动</text>
-                </g>
-                <g class="service-item" data-service="fargate">
-                    <rect x="250" y="520" width="140" height="60" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-                    <text class="service-text" x="260" y="540">ECS Fargate</text>
-                    <text class="service-text-small" x="260" y="555">容器服务</text>
-                    <text class="service-text-small" x="260" y="570">无服务器</text>
-                </g>
-                <g class="service-item" data-service="apigateway">
-                    <rect x="420" y="520" width="140" height="60" rx="6" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
-                    <text class="service-text" x="430" y="540">API Gateway</text>
-                    <text class="service-text-small" x="430" y="555">REST/GraphQL</text>
-                    <text class="service-text-small" x="430" y="570">按请求计费</text>
-                </g>
-                <g class="service-item" data-service="ec2">
-                    <rect x="590" y="520" width="140" height="60" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-                    <text class="service-text" x="600" y="540">EC2 (4C8G)</text>
-                    <text class="service-text-small" x="600" y="555">8台实例</text>
-                    <text class="service-text-small" x="600" y="570">Auto Scaling</text>
-                </g>
-                <g class="service-item" data-service="sqs">
-                    <rect x="760" y="520" width="120" height="60" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
-                    <text class="service-text" x="770" y="540">SQS/SNS</text>
-                    <text class="service-text-small" x="770" y="555">消息队列</text>
-                    <text class="service-text-small" x="770" y="570">异步解耦</text>
-                </g>
-
-                <!-- 数据存储层 -->
-                <rect class="data-group" x="50" y="620" width="900" height="120" rx="8"/>
-                <text class="layer-title" x="60" y="635">⑦ 数据存储层</text>
-                <g class="service-item" data-service="redis">
-                    <rect x="80" y="660" width="120" height="40" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
-                    <text class="service-text" x="90" y="680">Redis</text>
-                    <text class="service-text-small" x="90" y="695">2台 4C8G</text>
-                </g>
-                <g class="service-item" data-service="elasticache">
-                    <rect x="230" y="660" width="140" height="40" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
-                    <text class="service-text" x="240" y="680">ElastiCache</text>
-                    <text class="service-text-small" x="240" y="695">托管Redis</text>
-                </g>
-                <g class="service-item" data-service="rds">
-                    <rect x="400" y="660" width="140" height="40" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
-                    <text class="service-text" x="410" y="680">RDS MySQL</text>
-                    <text class="service-text-small" x="410" y="695">2台 4C8G</text>
-                </g>
-                <g class="service-item" data-service="aurora">
-                    <rect x="570" y="660" width="160" height="40" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
-                    <text class="service-text" x="580" y="680">Aurora Serverless</text>
-                    <text class="service-text-small" x="580" y="695">按需扩缩</text>
-                </g>
-                <g class="service-item" data-service="s3">
-                    <rect x="760" y="660" width="100" height="40" rx="6" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
-                    <text class="service-text" x="770" y="680">S3</text>
-                    <text class="service-text-small" x="770" y="695">对象存储</text>
-                </g>
-
-                <!-- 监控运维层 -->
-                <rect class="monitor-group" x="50" y="770" width="900" height="50" rx="8"/>
-                <text class="layer-title" x="60" y="785">⑧ 监控运维</text>
-                <g class="service-item" data-service="cloudwatch">
-                    <rect x="80" y="795" width="120" height="20" rx="4" fill="#fdf2f8" stroke="#ec4899" stroke-width="1"/>
-                    <text class="service-text-small" x="90" y="808">CloudWatch</text>
-                </g>
-                <g class="service-item" data-service="xray">
-                    <rect x="220" y="795" width="120" height="20" rx="4" fill="#fdf2f8" stroke="#ec4899" stroke-width="1"/>
-                    <text class="service-text-small" x="230" y="808">X-Ray</text>
-                </g>
-
-                <!-- 主流程线 -->
-                <line class="main-flow" x1="500" y1="80" x2="500" y2="120"/>
-                <line class="main-flow" x1="500" y1="170" x2="500" y2="200"/>
-                <line class="main-flow" x1="500" y1="280" x2="500" y2="310"/>
-                <line class="main-flow" x1="500" y1="370" x2="500" y2="400"/>
-                <line class="main-flow" x1="500" y1="460" x2="500" y2="490"/>
-                <line class="main-flow" x1="500" y1="590" x2="500" y2="620"/>
-                <line class="main-flow" x1="500" y1="740" x2="500" y2="770"/>
-
-                <!-- 横向连接线 -->
-                <line class="connection-line" x1="280" y1="250" x2="310" y2="250"/>
-                <line class="connection-line" x1="180" y1="350" x2="210" y2="350"/>
-                <line class="connection-line" x1="230" y1="440" x2="260" y2="440"/>
-                <line class="connection-line" x1="220" y1="550" x2="250" y2="550"/>
-                <line class="connection-line" x1="390" y1="550" x2="420" y2="550"/>
-                <line class="connection-line" x1="560" y1="550" x2="590" y2="550"/>
-                <line class="connection-line" x1="730" y1="550" x2="760" y2="550"/>
-                <line class="connection-line" x1="200" y1="680" x2="230" y2="680"/>
-                <line class="connection-line" x1="370" y1="680" x2="400" y2="680"/>
-                <line class="connection-line" x1="540" y1="680" x2="570" y2="680"/>
-                <line class="connection-line" x1="730" y1="680" x2="760" y2="680"/>
-
-                <!-- 监控连接 (虚线) -->
-                <line class="dashed-line" x1="140" y1="795" x2="320" y2="590"/>
-                <line class="dashed-line" x1="280" y1="795" x2="490" y2="590"/>
-            </svg>
+        <section id="config" class="section">
+            <h2>⚙️ 海外容器化架构配置</h2>
             
-            <!-- 阿里云架构图（默认隐藏） -->
-            <svg class="architecture-svg" viewBox="0 0 1000 900" id="alibabaArchitecture" style="display: none;">
-                <defs>
-                    <marker id="arrow-ali" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                        <path d="M0,0 L8,3 L0,6 Z" fill="#ff6a00"/>
-                    </marker>
-                </defs>
+            <div class="info-box">
+                <h4>🏗️ 基础架构配置</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div>
+                        <h5>K8s集群配置</h5>
+                        <ul>
+                            <li><strong>部署区域:</strong> 美国、欧洲、亚太</li>
+                            <li><strong>工作节点:</strong> 14台 4C8G</li>
+                            <li><strong>应用架构:</strong> 微服务容器化</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>存储与网络</h5>
+                        <ul>
+                            <li><strong>对象存储:</strong> 2TB多区域</li>
+                            <li><strong>CDN流量:</strong> 8TB/月</li>
+                            <li><strong>数据库:</strong> 主库+只读副本</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>海外业务需求</h5>
+                        <ul>
+                            <li><strong>多语言:</strong> 8种语言支持</li>
+                            <li><strong>合规:</strong> GDPR/SOX认证</li>
+                            <li><strong>运维:</strong> 24x7多时区</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-                <!-- 用户层 -->
-                <rect class="entry-group" x="400" y="20" width="200" height="60" rx="8"/>
-                <text class="layer-title" x="410" y="35">① 全球用户</text>
-                <g class="service-item" data-service="global-users-ali">
-                    <circle cx="500" cy="60" r="20" fill="#ffe4e1" stroke="#ff6a00" stroke-width="3"/>
-                    <text class="service-text" x="525" y="65">全球用户</text>
-                </g>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>技术维度</th>
+                        <th>AWS EKS</th>
+                        <th>华为云CCE</th>
+                        <th>阿里云ACK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>控制平面</strong></td>
+                        <td>AWS完全托管</td>
+                        <td>华为云托管 + 自建可选</td>
+                        <td>阿里云托管</td>
+                    </tr>
+                    <tr>
+                        <td><strong>网络插件</strong></td>
+                        <td>VPC CNI + AWS Load Balancer Controller</td>
+                        <td>VPC网络 + Yangtze网络插件</td>
+                        <td>Terway网络插件 + SLB</td>
+                    </tr>
+                    <tr>
+                        <td><strong>存储接口</strong></td>
+                        <td>EBS CSI + EFS CSI</td>
+                        <td>EVS + SFS + OBS CSI</td>
+                        <td>云盘CSI + NAS CSI + OSS CSI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>安全模型</strong></td>
+                        <td>IAM + Pod Identity + Calico</td>
+                        <td>容器安全服务 + 镜像安全扫描</td>
+                        <td>RAM + Security Sandbox</td>
+                    </tr>
+                    <tr>
+                        <td><strong>监控日志</strong></td>
+                        <td>CloudWatch Container Insights</td>
+                        <td>AOM应用运维管理</td>
+                        <td>ARMS + 日志服务SLS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>特色功能</strong></td>
+                        <td>Fargate Serverless节点</td>
+                        <td>鲲鹏+X86混合调度</td>
+                        <td>ASK Serverless集群</td>
+                    </tr>
+                    <tr>
+                        <td><strong>管理费用</strong></td>
+                        <td>$0.10/小时集群管理费</td>
+                        <td>免费集群管理</td>
+                        <td>免费集群管理(标准版)</td>
+                    </tr>
+                </tbody>
+            </table>
 
-                <!-- DNS层 -->
-                <rect class="dns-group" x="400" y="120" width="200" height="50" rx="8"/>
-                <text class="layer-title" x="410" y="135">② 智能DNS</text>
-                <g class="service-item" data-service="dns-ali">
-                    <rect x="420" y="140" width="160" height="30" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="430" y="158">云解析DNS</text>
-                </g>
-
-                <!-- CDN层 -->
-                <rect class="cdn-group" x="50" y="200" width="900" height="80" rx="8"/>
-                <text class="layer-title" x="60" y="215">③ CDN + 边缘（海外节点少）</text>
-                <g class="service-item" data-service="cdn-ali">
-                    <rect x="80" y="230" width="200" height="40" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="90" y="255">阿里云CDN (海外受限)</text>
-                </g>
-                <g class="service-item" data-service="edge-ali">
-                    <rect x="310" y="230" width="180" height="40" rx="6" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2"/>
-                    <text class="service-text" x="320" y="255">边缘计算 (功能受限)</text>
-                </g>
-
-                <!-- 安全层 -->
-                <rect class="security-group" x="50" y="310" width="900" height="60" rx="8"/>
-                <text class="layer-title" x="60" y="325">④ 安全防护</text>
-                <g class="service-item" data-service="waf-ali">
-                    <rect x="80" y="335" width="100" height="30" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="90" y="355">Web防火墙</text>
-                </g>
-                <g class="service-item" data-service="ddos-ali">
-                    <rect x="210" y="335" width="120" height="30" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="220" y="355">DDoS防护</text>
-                </g>
-
-                <!-- 负载均衡层 -->
-                <rect class="lb-group" x="50" y="400" width="900" height="60" rx="8"/>
-                <text class="layer-title" x="60" y="415">⑤ 负载均衡</text>
-                <g class="service-item" data-service="slb-ali">
-                    <rect x="80" y="425" width="150" height="30" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="90" y="445">负载均衡SLB</text>
-                </g>
-
-                <!-- 应用服务层 -->
-                <rect class="app-group" x="50" y="490" width="900" height="100" rx="8"/>
-                <text class="layer-title" x="60" y="505">⑥ 应用服务层</text>
-                <g class="service-item" data-service="fc-ali">
-                    <rect x="80" y="520" width="140" height="60" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="90" y="540">函数计算FC</text>
-                    <text class="service-text-small" x="90" y="555">按调用计费</text>
-                    <text class="service-text-small" x="90" y="570">海外支持有限</text>
-                </g>
-                <g class="service-item" data-service="ecs-ali">
-                    <rect x="250" y="520" width="140" height="60" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="260" y="540">ECS云服务器</text>
-                    <text class="service-text-small" x="260" y="555">8台 4C8G</text>
-                    <text class="service-text-small" x="260" y="570">海外性能一般</text>
-                </g>
-                <g class="service-item" data-service="apigateway-ali">
-                    <rect x="420" y="520" width="140" height="60" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="430" y="540">API网关</text>
-                    <text class="service-text-small" x="430" y="555">功能相对简单</text>
-                    <text class="service-text-small" x="430" y="570">海外延迟高</text>
-                </g>
-                <g class="service-item" data-service="mq-ali">
-                    <rect x="590" y="520" width="120" height="60" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="600" y="540">消息队列</text>
-                    <text class="service-text-small" x="600" y="555">RocketMQ</text>
-                    <text class="service-text-small" x="600" y="570">海外支持有限</text>
-                </g>
-
-                <!-- 数据存储层 -->
-                <rect class="data-group" x="50" y="620" width="900" height="120" rx="8"/>
-                <text class="layer-title" x="60" y="635">⑦ 数据存储层</text>
-                <g class="service-item" data-service="redis-ali">
-                    <rect x="80" y="660" width="120" height="40" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="90" y="680">Redis</text>
-                    <text class="service-text-small" x="90" y="695">2台 4C8G</text>
-                </g>
-                <g class="service-item" data-service="rds-ali">
-                    <rect x="230" y="660" width="140" height="40" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="240" y="680">RDS MySQL</text>
-                    <text class="service-text-small" x="240" y="695">2台 4C8G</text>
-                </g>
-                <g class="service-item" data-service="polardb-ali">
-                    <rect x="400" y="660" width="160" height="40" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="410" y="680">PolarDB</text>
-                    <text class="service-text-small" x="410" y="695">海外性能受限</text>
-                </g>
-                <g class="service-item" data-service="oss-ali">
-                    <rect x="590" y="660" width="100" height="40" rx="6" fill="#ffe4e1" stroke="#ff6a00" stroke-width="2"/>
-                    <text class="service-text" x="600" y="680">OSS</text>
-                    <text class="service-text-small" x="600" y="695">对象存储</text>
-                </g>
-
-                <!-- 监控运维层 -->
-                <rect class="monitor-group" x="50" y="770" width="900" height="50" rx="8"/>
-                <text class="layer-title" x="60" y="785">⑧ 监控运维</text>
-                <g class="service-item" data-service="cms-ali">
-                    <rect x="80" y="795" width="120" height="20" rx="4" fill="#ffe4e1" stroke="#ff6a00" stroke-width="1"/>
-                    <text class="service-text-small" x="90" y="808">云监控CMS</text>
-                </g>
-                <g class="service-item" data-service="arms-ali">
-                    <rect x="220" y="795" width="120" height="20" rx="4" fill="#ffe4e1" stroke="#ff6a00" stroke-width="1"/>
-                    <text class="service-text-small" x="230" y="808">ARMS监控</text>
-                </g>
-
-                <!-- 主流程线 (橙色) -->
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="80" x2="500" y2="120" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="170" x2="500" y2="200" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="280" x2="500" y2="310" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="370" x2="500" y2="400" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="460" x2="500" y2="490" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="590" x2="500" y2="620" marker-end="url(#arrow-ali)"/>
-                <line stroke="#ff6a00" stroke-width="3" x1="500" y1="740" x2="500" y2="770" marker-end="url(#arrow-ali)"/>
-
-                <!-- 横向连接线 -->
-                <line class="connection-line" x1="280" y1="250" x2="310" y2="250"/>
-                <line class="connection-line" x1="180" y1="350" x2="210" y2="350"/>
-                <line class="connection-line" x1="220" y1="550" x2="250" y2="550"/>
-                <line class="connection-line" x1="390" y1="550" x2="420" y2="550"/>
-                <line class="connection-line" x1="560" y1="550" x2="590" y2="550"/>
-                <line class="connection-line" x1="200" y1="680" x2="230" y2="680"/>
-                <line class="connection-line" x1="370" y1="680" x2="400" y2="680"/>
-                <line class="connection-line" x1="560" y1="680" x2="590" y2="680"/>
+            <h3>自动伸缩技术对比</h3>
+            <div class="advantage-grid">
+                <div class="advantage-card aws-advantage">
+                    <div class="advantage-title">🔵 AWS Auto Scaling</div>
+                    <ul class="advantage-list">
+                        <li><strong>算法:</strong> 目标跟踪 + 步进策略 + 预测性扩缩容</li>
+                        <li><strong>响应时间:</strong> 2-3分钟</li>
+                        <li><strong>独特功能:</strong> 机器学习预测 + Spot实例混合</li>
+                        <li><strong>监控:</strong> CloudWatch多维度指标</li>
+                    </ul>
+                </div>
                 
-                <!-- 监控连接 (虚线) -->
-                <line class="dashed-line" x1="140" y1="795" x2="350" y2="590"/>
-                <line class="dashed-line" x1="280" y1="795" x2="500" y2="590"/>
-            </svg>
-        </div>
-    </div>
+                <div class="advantage-card huawei-advantage">
+                    <div class="advantage-title">🟠 华为云弹性伸缩</div>
+                    <ul class="advantage-list">
+                        <li><strong>算法:</strong> 基于阈值 + 定时策略</li>
+                        <li><strong>响应时间:</strong> 3-5分钟</li>
+                        <li><strong>独特功能:</strong> 鲲鹏+X86混合调度</li>
+                        <li><strong>监控:</strong> 云监控CES指标</li>
+                    </ul>
+                </div>
+                
+                <div class="advantage-card alibaba-advantage">
+                    <div class="advantage-title">🟢 阿里云弹性伸缩</div>
+                    <ul class="advantage-list">
+                        <li><strong>算法:</strong> 预测性 + 定时 + 动态策略</li>
+                        <li><strong>响应时间:</strong> 1-2分钟</li>
+                        <li><strong>独特功能:</strong> 秒级弹性ECI + 智能预测</li>
+                        <li><strong>监控:</strong> 云监控CMS + 自定义指标</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <!-- 提示框 -->
-    <div class="tooltip" id="tooltip">
-        <h4 id="tooltipTitle">服务名称</h4>
-        <div class="description" id="tooltipDescription">服务描述</div>
-        <div class="key-feature" id="tooltipFeature">核心特性</div>
-    </div>
+        <section id="analysis" class="section">
+            <h2>📊 海外部署优劣势分析</h2>
+            
+            <div class="advantage-grid">
+                <div class="advantage-card aws-advantage">
+                    <div class="advantage-title">🔵 AWS</div>
+                    <h5>✅ 海外优势：</h5>
+                    <ul class="advantage-list">
+                        <li>全球覆盖最完善，33个区域25个海外</li>
+                        <li>合规认证最全面，SOC/PCI-DSS/GDPR</li>
+                        <li>金融级安全，90%金融机构使用</li>
+                        <li>技术生态最成熟，200+服务</li>
+                        <li>多语言支持，控制台15种语言</li>
+                    </ul>
+                    <h5 style="margin-top: 15px;">❌ 主要劣势：</h5>
+                    <ul class="advantage-list">
+                        <li>成本最高，比华为云贵44.6%</li>
+                        <li>学习曲线陡峭，服务复杂</li>
+                        <li>中文技术支持相对较少</li>
+                    </ul>
+                </div>
+                
+                <div class="advantage-card huawei-advantage">
+                    <div class="advantage-title">🟠 华为云</div>
+                    <h5>✅ 成本优势：</h5>
+                    <ul class="advantage-list">
+                        <li>海外部署成本最低</li>
+                        <li>K8s集群管理免费</li>
+                        <li>亚洲区域网络质量好</li>
+                        <li>中文技术支持完善</li>
+                        <li>AI、鲲鹏技术先进</li>
+                    </ul>
+                    <h5 style="margin-top: 15px;">❌ 海外限制：</h5>
+                    <ul class="advantage-list">
+                        <li>海外区域有限，主要亚欧</li>
+                        <li>美国市场服务受限</li>
+                        <li>GDPR等合规认证不全</li>
+                        <li>欧美客户认知度低</li>
+                    </ul>
+                </div>
+                
+                <div class="advantage-card alibaba-advantage">
+                    <div class="advantage-title">🟢 阿里云</div>
+                    <h5>✅ 技术优势：</h5>
+                    <ul class="advantage-list">
+                        <li>成本适中，比AWS便宜21.5%</li>
+                        <li>弹性伸缩响应最快1-2分钟</li>
+                        <li>双11实战验证的高并发能力</li>
+                        <li>中文生态最完善</li>
+                        <li>产品线覆盖相对完整</li>
+                    </ul>
+                    <h5 style="margin-top: 15px;">❌ 海外短板：</h5>
+                    <ul class="advantage-list">
+                        <li>海外网络质量一般</li>
+                        <li>国际合规认证较少</li>
+                        <li>欧美市场品牌认知度低</li>
+                        <li>海外技术支持主要中文</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- 对比报告模态框 -->
-    <div class="modal" id="reportModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeReportBtn">✕</button>
-            <div id="reportContent"></div>
-        </div>
-    </div>
+            <h3>CDN优化策略</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>优化技术</th>
+                        <th>AWS CloudFront</th>
+                        <th>华为云CDN</th>
+                        <th>阿里云CDN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>智能压缩</strong></td>
+                        <td>Gzip/Brotli自动压缩，节省30-50%</td>
+                        <td>多格式压缩，节省25-40%</td>
+                        <td>Page Speed优化，节省35-45%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>缓存策略</strong></td>
+                        <td>TTL智能调整，回源减少70-80%</td>
+                        <td>节点智能缓存，回源减少60-70%</td>
+                        <td>智能缓存刷新，回源减少65-75%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>边缘计算</strong></td>
+                        <td>Lambda@Edge边缘计算</td>
+                        <td>边缘侧动态加速</td>
+                        <td>全站加速DCDN</td>
+                    </tr>
+                    <tr>
+                        <td><strong>成本优化</strong></td>
+                        <td>Price Class选择 + Reserved Capacity</td>
+                        <td>流量包 + 闲时折扣</td>
+                        <td>按量计费 + 资源包</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- 成本分析模态框 -->
-    <div class="modal" id="costModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeCostBtn">✕</button>
-            <div id="costContent"></div>
-        </div>
+        <section id="recommendation" class="section">
+            <h2>🎯 海外业务选型建议</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>业务场景</th>
+                        <th>推荐平台</th>
+                        <th>理由</th>
+                        <th>成本差异</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>欧美主要市场</strong></td>
+                        <td>🥇 AWS</td>
+                        <td>GDPR/SOX合规完善，用户信任度高</td>
+                        <td>+44.6%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>亚洲区域业务</strong></td>
+                        <td>🥇 华为云</td>
+                        <td>网络质量好，成本最优</td>
+                        <td>基准</td>
+                    </tr>
+                    <tr>
+                        <td><strong>成本敏感项目</strong></td>
+                        <td>🥇 阿里云</td>
+                        <td>基础功能满足，价格最低</td>
+                        <td>基准</td>
+                    </tr>
+                    <tr>
+                        <td><strong>金融支付业务</strong></td>
+                        <td>🥇 AWS</td>
+                        <td>PCI-DSS认证最完善</td>
+                        <td>+47.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>电商多语言</strong></td>
+                        <td>🥇 阿里云</td>
+                        <td>电商经验丰富，成本最低</td>
+                        <td>基准</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <h3>🎯 最终选型建议</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 25px;">
+                    <div style="padding: 25px; background: #22c55e; color: white; border-radius: 12px;">
+                        <h4>🏆 全面优势 → AWS</h4>
+                        <p style="margin: 15px 0;"><strong>适合：</strong>所有海外业务场景</p>
+                        <p><strong>核心优势：</strong>通过Cloudflare优化后成本最低，同时保持最强的全球化能力和合规认证</p>
+                    </div>
+                    
+                    <div style="padding: 25px; background: #f87171; color: white; border-radius: 12px;">
+                        <h4>🌏 亚洲优势 → 华为云</h4>
+                        <p style="margin: 15px 0;"><strong>适合：</strong>主要服务亚洲市场</p>
+                        <p><strong>性价比：</strong>仅比AWS贵16.7%，亚洲网络质量好，政企认可度高</p>
+                    </div>
+                    
+                    <div style="padding: 25px; background: #3b82f6; color: white; border-radius: 12px;">
+                        <h4>🛍️ 电商场景 → 阿里云</h4>
+                        <p style="margin: 15px 0;"><strong>适合：</strong>电商、零售等高并发场景</p>
+                        <p><strong>技术优势：</strong>双11验证的高并发能力，仅比AWS贵18.3%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 决策关键要点</h4>
+                <ul>
+                    <li><strong>成本逆转：</strong>通过Cloudflare优化，AWS反而成为最便宜的选择</li>
+                    <li><strong>全球化：</strong>AWS在欧美市场具有绝对优势，用户信任度最高</li>
+                    <li><strong>合规认证：</strong>金融级业务必选AWS，认证最全面</li>
+                    <li><strong>技术生态：</strong>AWS服务最丰富，第三方集成最好</li>
+                    <li><strong>实际考虑：</strong>一般业务不需要高端实例，基础配置够用</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h3>🎯 最终结论</h3>
+                <p><strong>通过合理的技术选型（Cloudflare CDN + 基础实例），AWS不仅成本最低，还保持了最强的全球化能力。</strong></p>
+                <p>对于海外业务，AWS + Cloudflare 是性价比最高的组合方案。</p>
+            </div>
+        </section>
     </div>
 
     <script>
-        const serviceData = {
-            'global-users': {
-                title: '全球用户',
-                description: '来自世界各地的用户访问，需要低延迟和高可用性',
-                feature: '🌍 核心需求：低延迟 + 高可用 + 全球覆盖'
-            },
-            'route53': {
-                title: 'Route 53',
-                description: 'AWS全球DNS服务，智能路由到最近的边缘节点',
-                feature: '🌐 核心优势：全球DNS + 智能路由 + 健康检查'
-            },
-            'cloudfront': {
-                title: 'CloudFront CDN',
-                description: 'AWS全球内容分发网络，200+边缘节点，毫秒级响应',
-                feature: '🚀 核心优势：200+节点 + 边缘缓存 + DDoS防护'
-            },
-            'lambda-edge': {
-                title: 'Lambda@Edge',
-                description: '在边缘节点运行代码，就近处理请求，减少回源',
-                feature: '⚡ 核心优势：边缘计算 + 就近处理 + 零延迟'
-            },
-            'waf': {
-                title: 'AWS WAF',
-                description: 'Web应用防火墙，防护SQL注入、XSS攻击，自定义规则',
-                feature: '🛡️ 核心优势：Web安全 + 自定义规则 + 实时防护'
-            },
-            'shield': {
-                title: 'AWS Shield',
-                description: 'DDoS防护服务，Standard免费，Advanced提供高级防护',
-                feature: '🛡️ 核心优势：DDoS防护 + 24/7监控 + 攻击分析'
-            },
-            'alb': {
-                title: 'Application Load Balancer',
-                description: '应用层负载均衡，支持HTTP/HTTPS，内容路由',
-                feature: '⚖️ 核心优势：7层负载 + 内容路由 + SSL终止'
-            },
-            'nlb': {
-                title: 'Network Load Balancer',
-                description: '网络层负载均衡，超高性能，支持TCP/UDP',
-                feature: '⚖️ 核心优势：4层负载 + 超高性能 + 静态IP'
-            },
-            'lambda': {
-                title: 'AWS Lambda',
-                description: '无服务器计算，按请求计费，毫秒级计费，自动扩缩',
-                feature: '⚡ 核心优势：按请求计费 + 零运维 + 自动扩缩'
-            },
-            'fargate': {
-                title: 'ECS Fargate',
-                description: '无服务器容器平台，无需管理EC2，按vCPU和内存计费',
-                feature: '🐳 核心优势：无服务器容器 + 按需计费 + 零运维'
-            },
-            'apigateway': {
-                title: 'API Gateway',
-                description: '托管API服务，支持REST/GraphQL，按请求计费',
-                feature: '🚪 核心优势：托管API + 按请求计费 + 版本管理'
-            },
-            'ec2': {
-                title: 'EC2实例',
-                description: '虚拟服务器，4C8G配置，支持Auto Scaling自动扩缩',
-                feature: '🖥️ 核心优势：灵活配置 + 自动扩缩 + 多实例类型'
-            },
-            'sqs': {
-                title: 'SQS/SNS',
-                description: '消息队列和通知服务，系统解耦，高可靠性',
-                feature: '📨 核心优势：异步解耦 + 高可靠 + 按消息计费'
-            },
-            'redis': {
-                title: 'Redis Cluster',
-                description: '高性能内存数据库，毫秒级响应，集群部署',
-                feature: '⚡ 核心优势：毫秒响应 + 集群高可用 + 持久化'
-            },
-            'elasticache': {
-                title: 'ElastiCache',
-                description: 'AWS托管的Redis服务，自动故障转移，备份恢复',
-                feature: '🔄 核心优势：托管服务 + 自动故障转移 + 免运维'
-            },
-            'rds': {
-                title: 'RDS MySQL',
-                description: '托管MySQL数据库，自动备份，Multi-AZ部署',
-                feature: '🗄️ 核心优势：托管数据库 + 自动备份 + 高可用'
-            },
-            'aurora': {
-                title: 'Aurora Serverless v2',
-                description: '自动扩缩容MySQL，按实际使用量计费，性能5倍提升',
-                feature: '🌟 核心优势：自动扩缩 + 按需计费 + 5倍性能'
-            },
-            's3': {
-                title: 'Amazon S3',
-                description: '对象存储服务，99.999999999%耐久性，无限扩展',
-                feature: '🪣 核心优势：超高耐久性 + 无限扩展 + 多存储类'
-            },
-            'cloudwatch': {
-                title: 'CloudWatch',
-                description: 'AWS原生监控服务，实时指标，自动告警，成本分析',
-                feature: '📊 核心优势：实时监控 + 自动告警 + 成本优化'
-            },
-            'xray': {
-                title: 'AWS X-Ray',
-                description: '分布式追踪服务，请求链路分析，性能瓶颈定位',
-                feature: '🔍 核心优势：分布式追踪 + 性能分析 + 故障定位'
-            },
-            // 阿里云服务数据
-            'global-users-ali': {
-                title: '全球用户',
-                description: '阿里云海外节点相对较少，延迟较高',
-                feature: '🌍 挑战：海外节点少 + 延迟高 + 服务受限'
-            },
-            'dns-ali': {
-                title: '云解析DNS',
-                description: '阿里云DNS服务，海外解析速度一般',
-                feature: '🌐 限制：海外解析慢 + 节点少 + 智能路由有限'
-            },
-            'cdn-ali': {
-                title: '阿里云CDN',
-                description: '主要覆盖中国，海外节点数量和质量有限',
-                feature: '🚨 短板：海外节点少 + 性能一般 + 边缘计算受限'
-            },
-            'edge-ali': {
-                title: '边缘计算',
-                description: '阿里云边缘计算功能相对简单，海外支持有限',
-                feature: '⚠️ 限制：功能简单 + 海外支持少 + 延迟较高'
-            },
-            'waf-ali': {
-                title: 'Web应用防火墙',
-                description: '阿里云WAF，基础防护功能，海外效果一般',
-                feature: '🛡️ 限制：功能相对简单 + 海外防护效果一般'
-            },
-            'ddos-ali': {
-                title: 'DDoS防护',
-                description: '阿里云DDoS防护，主要针对中国市场优化',
-                feature: '🛡️ 限制：海外防护能力有限 + 响应速度慢'
-            },
-            'slb-ali': {
-                title: '负载均衡SLB',
-                description: '阿里云负载均衡器，功能相对基础',
-                feature: '⚖️ 限制：功能相对简单 + 海外性能一般'
-            },
-            'fc-ali': {
-                title: '函数计算FC',
-                description: '阿里云Serverless计算，海外支持有限，冷启动较慢',
-                feature: '⚡ 短板：海外支持少 + 冷启动慢 + 生态有限'
-            },
-            'ecs-ali': {
-                title: 'ECS云服务器',
-                description: '阿里云虚拟机，海外实例性能和网络相对一般',
-                feature: '🖥️ 限制：海外性能一般 + 网络延迟高 + 可用区少'
-            },
-            'apigateway-ali': {
-                title: 'API网关',
-                description: '阿里云API网关，功能相对简单，海外延迟较高',
-                feature: '🚪 限制：功能简单 + 海外延迟高 + 集成有限'
-            },
-            'mq-ali': {
-                title: '消息队列',
-                description: '阿里云RocketMQ，海外支持有限',
-                feature: '📨 限制：海外支持少 + 功能相对简单'
-            },
-            'redis-ali': {
-                title: 'Redis缓存',
-                description: '阿里云Redis，海外性能一般',
-                feature: '⚡ 限制：海外性能一般 + 网络延迟高'
-            },
-            'rds-ali': {
-                title: 'RDS数据库',
-                description: '阿里云关系型数据库，海外可用区相对较少',
-                feature: '🗄️ 限制：海外可用区少 + 性能相对一般'
-            },
-            'polardb-ali': {
-                title: 'PolarDB',
-                description: '阿里云云原生数据库，海外部署受限',
-                feature: '🌟 限制：海外部署少 + 功能受限 + 延迟较高'
-            },
-            'oss-ali': {
-                title: 'OSS对象存储',
-                description: '阿里云对象存储，海外传输速度一般',
-                feature: '🪣 限制：海外传输慢 + 节点少 + CDN集成有限'
-            },
-            'cms-ali': {
-                title: '云监控CMS',
-                description: '阿里云监控服务，海外监控能力有限',
-                feature: '📊 限制：海外监控有限 + 告警延迟 + 分析简单'
-            },
-            'arms-ali': {
-                title: 'ARMS监控',
-                description: '阿里云应用监控，海外链路追踪能力有限',
-                feature: '🔍 限制：海外追踪有限 + 分析能力一般'
-            }
-        };
-
-        const tooltip = document.getElementById('tooltip');
-        const tooltipTitle = document.getElementById('tooltipTitle');
-        const tooltipDescription = document.getElementById('tooltipDescription');
-        const tooltipFeature = document.getElementById('tooltipFeature');
-
-        // 模态框元素
-        const reportModal = document.getElementById('reportModal');
-        const costModal = document.getElementById('costModal');
-        const showReportBtn = document.getElementById('showReportBtn');
-        const showCostBtn = document.getElementById('showCostBtn');
-        const closeReportBtn = document.getElementById('closeReportBtn');
-        const closeCostBtn = document.getElementById('closeCostBtn');
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // 服务项交互
-            const serviceItems = document.querySelectorAll('.service-item');
-            
-            serviceItems.forEach(item => {
-                item.addEventListener('mouseenter', function(e) {
-                    const serviceKey = this.getAttribute('data-service');
-                    const service = serviceData[serviceKey];
-                    
-                    if (service) {
-                        tooltipTitle.textContent = service.title;
-                        tooltipDescription.textContent = service.description;
-                        tooltipFeature.textContent = service.feature;
-                        
-                        const rect = this.getBoundingClientRect();
-                        tooltip.style.left = Math.min(rect.left + rect.width / 2 - 140, window.innerWidth - 300) + 'px';
-                        tooltip.style.top = (rect.bottom + 10) + 'px';
-                        
-                        tooltip.classList.add('show');
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    tooltip.classList.remove('show');
-                });
-                
-                item.addEventListener('click', function() {
-                    serviceItems.forEach(si => si.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    setTimeout(() => {
-                        this.classList.remove('active');
-                    }, 2000);
-                });
-            });
-
-            // 云服务商选择
-            const cloudItems = document.querySelectorAll('.cloud-item');
-            cloudItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    cloudItems.forEach(ci => {
-                        ci.style.opacity = '0.8';
-                        ci.style.transform = 'scale(1)';
-                        ci.classList.remove('cloud-aws');
+        // 导航滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
-                    
-                    this.style.opacity = '1';
-                    this.style.transform = 'scale(1.1)';
-                    this.classList.add('cloud-aws');
-                });
-            });
-
-            // 模态框事件
-            showReportBtn.addEventListener('click', showDetailedReport);
-            showCostBtn.addEventListener('click', showCostAnalysis);
-            closeReportBtn.addEventListener('click', () => closeModal(reportModal));
-            closeCostBtn.addEventListener('click', () => closeModal(costModal));
-
-            // 点击模态框背景关闭
-            [reportModal, costModal].forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal(modal);
-                    }
-                });
-            });
-
-            // ESC键关闭模态框
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeModal(reportModal);
-                    closeModal(costModal);
                 }
             });
         });
 
-        function showModal(modal) {
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
+        // 成本卡片动画
+        document.querySelectorAll('.cost-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.transition = 'all 0.3s ease';
+                this.style.boxShadow = '0 20px 50px rgba(0,0,0,0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
+            });
+        });
 
-        function closeModal(modal) {
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
+        // 架构组件交互
+        document.querySelectorAll('.arch-component').forEach(component => {
+            component.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.backgroundColor = '#f0f9ff';
+                this.style.borderColor = '#3b82f6';
+                this.style.transition = 'all 0.2s ease';
+            });
+            component.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.backgroundColor = 'white';
+                this.style.borderColor = '#667eea';
+            });
+        });
 
-        function showDetailedReport() {
-            const reportContent = document.getElementById('reportContent');
-            reportContent.innerHTML = `
-                <div style="padding: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6;">
-                    <h1 style="text-align: center; color: #2d3748; font-size: 28px; margin-bottom: 30px; border-bottom: 3px solid #667eea; padding-bottom: 15px;">
-                        🏆 AWS vs 阿里云 - 2025年7月海外技术架构深度对比
-                    </h1>
-                    
-                    <div style="background: linear-gradient(135deg, #ebf8ff, #e6fffa); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #4299e1;">
-                        <h3 style="color: #2b6cb0; margin-bottom: 15px;">🎯 核心结论</h3>
-                        <p><strong>AWS在海外市场具有压倒性优势</strong>，全球基础设施覆盖最广，服务生态最完善。阿里云在中国市场领先，但海外部署存在明显短板。对于<span style="background: #ffd700; padding: 2px 8px; border-radius: 4px; font-weight: 600;">全球化业务</span>，AWS是唯一正确选择。</p>
-                    </div>
+        // 导航高亮
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        🌍 2025年7月全球节点对比
-                    </h2>
-                    
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden;">
-                        <thead>
-                            <tr style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
-                                <th style="padding: 15px; text-align: left; font-weight: 600;">对比维度</th>
-                                <th style="padding: 15px; text-align: left; font-weight: 600;">AWS</th>
-                                <th style="padding: 15px; text-align: left; font-weight: 600;">阿里云</th>
-                                <th style="padding: 15px; text-align: left; font-weight: 600;">优势对比</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;"><strong>全球区域</strong></td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">33个地理区域，105个可用区</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">28个地理区域，85个可用区</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; color: #38a169; font-weight: 600;">AWS覆盖更广，特别是美洲和非洲</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;"><strong>CDN边缘节点</strong></td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">450+个边缘节点，全球分布</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">2800+个边缘节点，主要在中国</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; color: #38a169; font-weight: 600;">AWS海外节点质量更高</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;"><strong>海外延迟</strong></td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">平均 < 50ms</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">平均 80-150ms</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; color: #38a169; font-weight: 600;">AWS延迟显著更低</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;"><strong>服务一致性</strong></td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">全球服务高度一致</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">海外服务功能受限</td>
-                                <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; color: #38a169; font-weight: 600;">AWS全球一致性更好</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        💰 Lambda按量计费机制详解
-                    </h2>
-                    
-                    <div style="background: #fff7ed; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f97316;">
-                        <h3 style="color: #c2410c; margin-bottom: 15px;">🔍 Lambda计费详细说明</h3>
-                        <p><strong>是的，每次Lambda函数执行都会产生费用，但成本极低且高度优化：</strong></p>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li><strong>请求费用：</strong>每100万次请求收费$0.20（约￥1.4）</li>
-                            <li><strong>执行时间：</strong>按GB-秒计费，每GB-秒$0.0000166667（约￥0.00012）</li>
-                            <li><strong>免费额度：</strong>每月100万次免费请求 + 40万GB-秒免费执行时间</li>
-                            <li><strong>冷启动优化：</strong>AWS持续优化，Java冷启动已降至200ms以内</li>
-                        </ul>
-                        
-                        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                            <h4 style="color: #1e40af; margin-bottom: 10px;">💡 实际计费示例（月请求500万次）：</h4>
-                            <p><strong>• 请求费用：</strong>(500万 - 100万免费) × $0.20/100万 = $8/月</p>
-                            <p><strong>• 执行费用：</strong>假设平均100ms执行，512MB内存 = 约$12/月</p>
-                            <p><strong>• 总计：</strong>月费用约$20（￥140），相比传统服务器省90%+</p>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, #ebf8ff, #e6fffa); border-radius: 15px; padding: 25px; margin: 30px 0; border-left: 5px solid #4299e1;">
-                        <h3 style="color: #2b6cb0; margin-bottom: 15px;">🏆 推荐方案：AWS全栈架构</h3>
-                        <p><strong>核心理由：</strong></p>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li><strong>经济激励机制：</strong>按量计费推动代码优化，形成正向循环</li>
-                            <li><strong>全球化优势：</strong>450+边缘节点，33个区域，海外体验最佳</li>
-                            <li><strong>技术领先性：</strong>服务创新速度最快，生态最完善</li>
-                            <li><strong>成本优势：</strong>高流量下按量计费比固定成本更经济</li>
-                            <li><strong>运维免费：</strong>托管服务减少90%运维工作量</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-            showModal(reportModal);
-        }
-
-        function showCostAnalysis() {
-            const costContent = document.getElementById('costContent');
-            costContent.innerHTML = `
-                <div style="padding: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6;">
-                    <h1 style="text-align: center; color: #2d3748; font-size: 28px; margin-bottom: 30px; border-bottom: 3px solid #667eea; padding-bottom: 15px;">
-                        💰 AWS vs 阿里云 - 3年成本对比分析
-                    </h1>
-                    
-                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f59e0b;">
-                        <h3 style="color: #92400e; margin-bottom: 15px;">📋 基础配置假设</h3>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">🖥️ 计算资源</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li>后端：8台 4C8G ECS实例</li>
-                                    <li>前端：Lambda/函数计算 按流量</li>
-                                    <li>数据库：2台 4C8G MySQL</li>
-                                    <li>缓存：2台 4C8G Redis</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">🌐 流量规模</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li>初期：500万次/月</li>
-                                    <li>半年：500万次/月</li>
-                                    <li>1年：2000万次/月</li>
-                                    <li>3年：1亿次/月</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        📊 精确成本对比分析
-                    </h2>
-                    
-                    <div style="background: #fff7ed; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f97316;">
-                        <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 重要发现：Lambda超便宜，AWS贵在基础设施！</h3>
-                        <p><strong>经过精确计算发现：</strong></p>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li><strong>Lambda几乎免费：</strong>500万请求/月仅需$0.80，1亿请求仅$96</li>
-                            <li><strong>真正差异在基础设施：</strong>EC2、RDS、缓存比阿里云贵30-45%</li>
-                            <li><strong>极端优化：</strong>全Lambda架构可以将计算成本降到忽略不计</li>
-                            <li><strong>混合方案：</strong>基础常驻+Lambda扩容是最佳平衡</li>
-                        </ul>
-                    </div>
-
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        📊 基于官方价格的精确成本对比
-                    </h2>
-                    
-                    <div style="background: #fff7ed; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f97316;">
-                        <h3 style="color: #c2410c; margin-bottom: 15px;">🎯 重要发现：按官方价格计算的真实成本差异</h3>
-                        <p><strong>基于AWS和阿里云2025年7月官方价格，按流量动态扩容计算：</strong></p>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li><strong>500万请求：</strong>4台服务器基础配置</li>
-                            <li><strong>2000万请求：</strong>扩容到6台服务器（1.5倍）</li>
-                            <li><strong>1亿请求：</strong>扩容到12台服务器（3倍）</li>
-                            <li><strong>Serverless：</strong>始终按实际使用量计费</li>
-                        </ul>
-                    </div>
-
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden;">
-                        <thead>
-                            <tr style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">流量场景</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">AWS总成本</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">阿里云总成本</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">成本差异</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>初期 (500万/月)</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">4台EC2 vs 4台ECS</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,551/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">EC2: $561 | DB: $546 | Lambda: $0.8</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,058/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">ECS: $391 | DB: $333 | 函数: $0.5</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #dc2626; font-weight: 600;">AWS贵47%</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>成长期 (2000万/月)</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">6台EC2 vs 6台ECS</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,928/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">EC2: $841 | DB: $546 | Lambda: $14</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,293/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">ECS: $587 | DB: $333 | 函数: $10</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #dc2626; font-weight: 600;">AWS贵49%</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>成熟期 (1亿/月)</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">12台EC2 vs 12台ECS</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$3,295/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">EC2: $1,682 | DB: $546 | Lambda: $96</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$2,097/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">ECS: $1,174 | DB: $333 | 函数: $67</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #dc2626; font-weight: 600;">AWS贵57%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div style="background: #ecfdf5; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #22c55e;">
-                        <h3 style="color: #059669; margin-bottom: 15px;">🚀 Serverless vs K8s容器化对比</h3>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <h4 style="color: #047857; margin-bottom: 10px;">🔵 AWS架构选择</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>Lambda:</strong> $0.8 → $96 (极致按需)</li>
-                                    <li><strong>EKS:</strong> $543 → $1,805 (容器化)</li>
-                                    <li><strong>EC2:</strong> $561 → $1,682 (传统虚拟机)</li>
-                                    <li><strong>节省:</strong> Lambda比EKS省95%+</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style="color: #047857; margin-bottom: 10px;">🟠 阿里云架构选择</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>函数计算:</strong> $0.5 → $67 (按需计费)</li>
-                                    <li><strong>ACK:</strong> $389 → $1,270 (容器服务)</li>
-                                    <li><strong>ECS:</strong> $391 → $1,174 (云服务器)</li>
-                                    <li><strong>节省:</strong> 函数计算比ACK省95%+</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f59e0b;">
-                        <h3 style="color: #92400e; margin-bottom: 15px;">💰 关键成本洞察</h3>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">📈 成本结构分析</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>AWS贵在基础设施：</strong>EC2、RDS单价高</li>
-                                    <li><strong>阿里云性价比高：</strong>但海外性能差</li>
-                                    <li><strong>Serverless极致优化：</strong>两平台都省95%+</li>
-                                    <li><strong>流量越大差距越大：</strong>47% → 57%</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">🎯 选择建议</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>中国市场：</strong>阿里云性价比更高</li>
-                                    <li><strong>海外市场：</strong>AWS体验更好，值得投资</li>
-                                    <li><strong>技术选型：</strong>Serverless优先</li>
-                                    <li><strong>长期价值：</strong>AWS技术生态更强</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><div style="font-size: 11px; color: #6b7280;">函数: $0 | ECS: $224 | 基础: $610</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省43%</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>第2年 (2000万/月)</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">50% Serverless</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,603/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">Serverless: $3 | EC2: $720 | 基础: $880</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,172/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">函数: $2 | ECS: $560 | 基础: $610</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省21%</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>第3年 (1亿/月)</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">80% Serverless</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$2,108/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">Serverless: $76 | EC2: $1,152 | 基础: $880</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
-                                    <strong>$1,559/月</strong>
-                                    <div style="font-size: 11px; color: #6b7280;">函数: $53 | ECS: $896 | 基础: $610</div>
-                                </td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: 600;">成本趋平</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f59e0b;">
-                        <h3 style="color: #92400e; margin-bottom: 15px;">💰 3年总拥有成本对比</h3>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">📊 总成本</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>AWS智能混合:</strong> $58,551 (￥410万)</li>
-                                    <li><strong>阿里云混合:</strong> $42,778 (￥299万)</li>
-                                    <li><strong>差额:</strong> $15,773 (￥110万)</li>
-                                    <li><strong>AWS贵:</strong> 36.9%</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style="color: #78350f; margin-bottom: 10px;">🎯 关键洞察</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li>Serverless比例提升显著降低成本</li>
-                                    <li>第3年计算成本几乎可忽略</li>
-                                    <li>AWS技术先进性在长期更有价值</li>
-                                    <li>海外部署AWS仍是最佳选择</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                
-
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        💰 Lambda计费机制详解
-                    </h2>
-                    
-                    <div style="background: #fff7ed; border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #f97316;">
-                        <h3 style="color: #c2410c; margin-bottom: 15px;">❓ "每次调用都收费吗？"</h3>
-                        
-                        <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin: 15px 0;">
-                            <h4 style="color: #1e40af; margin-bottom: 15px;">💸 Lambda精确计费说明</h4>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div>
-                                    <h5 style="color: #1e40af; margin-bottom: 10px;">🆓 每月免费额度</h5>
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        <li><strong>100万次</strong>免费请求</li>
-                                        <li><strong>40万GB-秒</strong>免费计算时间</li>
-                                        <li>相当于512MB函数运行22小时</li>
-                                        <li>大部分小项目完全免费</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 style="color: #1e40af; margin-bottom: 10px;">💰 收费标准</h5>
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        <li><strong>请求费:</strong> $0.20/100万次</li>
-                                        <li><strong>计算费:</strong> $0.0000166667/GB-秒</li>
-                                        <li><strong>网络费:</strong> 出网流量单独计费</li>
-                                        <li><strong>存储费:</strong> 临时存储(/tmp)免费</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden;">
-                            <thead>
-                                <tr style="background: #1e40af; color: white;">
-                                    <th style="padding: 12px; text-align: left;">请求量/月</th>
-                                    <th style="padding: 12px; text-align: left;">Lambda费用</th>
-                                    <th style="padding: 12px; text-align: left;">等效EC2成本</th>
-                                    <th style="padding: 12px; text-align: left;">节省比例</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="background: #f8fafc;">
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>50万</strong></td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">$0.00 (全免费)</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$144 (1台t3.xlarge)</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省100%</td>
-                                </tr>
-                                <tr style="background: #f0f9ff;">
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>500万</strong></td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">$0.80</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$288 (2台t3.xlarge)</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省99.7%</td>
-                                </tr>
-                                <tr style="background: #f8fafc;">
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>2000万</strong></td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">$14</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$576 (4台t3.xlarge)</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省97.6%</td>
-                                </tr>
-                                <tr style="background: #f0f9ff;">
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>1亿</strong></td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">$96</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$1,152 (8台t3.xlarge)</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669; font-weight: 600;">节省91.7%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                            <h4 style="color: #059669; margin-bottom: 10px;">🧮 实际计费示例（1亿请求/月）</h4>
-                            <div style="margin-bottom: 10px;"><strong>配置:</strong> 每次100ms执行时间，512MB内存</div>
-                            <ul style="margin: 0; padding-left: 20px;">
-                                <li><strong>请求费:</strong> (1亿 - 100万免费) × $0.20/100万 = $19.80</li>
-                                <li><strong>计算费:</strong> 1亿 × 0.1秒 × 0.5GB × $0.0000166667 = $76.67</li>
-                                <li><strong>总计:</strong> $96.47/月</li>
-                                <li><strong>对比8台EC2:</strong> $1,152/月 → <span style="background: #22c55e; color: white; padding: 2px 8px; border-radius: 4px; font-weight: 600;">节省92%</span></li>
-                                <li><strong>额外优势:</strong> 零运维 + 自动扩缩 + 毫秒计费</li>
-                            </ul>
-                        </div>
-                    </div>
-                        
-                        <div style="background: #f0fdf4; border-radius: 15px; padding: 20px; border: 2px solid #22c55e;">
-                            <h3 style="color: #15803d; margin-bottom: 15px; text-align: center;">🟢 阿里云成本 (美元)</h3>
-                            <ul style="margin: 0; padding: 0; list-style: none;">
-                                <li style="padding: 8px; background: #dcfce7; margin: 5px 0; border-radius: 6px;"><strong>初期 (500万/月):</strong> $1,549/月</li>
-                                <li style="padding: 8px; background: #bbf7d0; margin: 5px 0; border-radius: 6px;"><strong>半年 (500万/月):</strong> $1,549/月</li>
-                                <li style="padding: 8px; background: #86efac; margin: 5px 0; border-radius: 6px;"><strong>1年 (2000万/月):</strong> $2,980/月</li>
-                                <li style="padding: 8px; background: #4ade80; margin: 5px 0; border-radius: 6px; color: white;"><strong>3年 (1亿/月):</strong> $12,800/月</li>
-                            </ul>
-                            <div style="margin-top: 15px; padding: 10px; background: #15803d; color: white; border-radius: 8px; text-align: center;">
-                                <strong>3年总计: $206,364</strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 style="color: #4a5568; font-size: 22px; margin: 25px 0 15px 0; border-left: 4px solid #667eea; padding-left: 15px;">
-                        🌍 2025年7月全球节点支持对比
-                    </h2>
-                    
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden;">
-                        <thead>
-                            <tr style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">地理区域</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">AWS可用区</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">阿里云可用区</th>
-                                <th style="padding: 12px; text-align: left; font-weight: 600;">服务支持度</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>北美</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">8个区域，24个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1个区域，3个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 基础服务</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>欧洲</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">8个区域，25个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">2个区域，6个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 受限服务</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>亚太</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">11个区域，35个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">15个区域，45个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #f59e0b;">阿里云区域更多，但AWS服务更全</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>中东非洲</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">4个区域，12个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1个区域，3个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 基础服务</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>南美</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1个区域，3个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">0个区域</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS独有覆盖</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div style="background: linear-gradient(135deg, #ebf8ff, #e6fffa); border-radius: 15px; padding: 25px; margin: 30px 0; border-left: 5px solid #4299e1;">
-                        <h3 style="color: #2b6cb0; margin-bottom: 15px;">🎯 最终推荐：AWS + 智能Lambda架构</h3>
-                        <div style="margin-bottom: 15px;">
-                            <strong>虽然AWS基础设施成本高35%，但Lambda的经济优势改变了游戏规则：</strong>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <h4 style="color: #1e40af; margin-bottom: 10px;">💰 成本优势</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>Lambda超便宜：</strong>1亿请求仅$96每月</li>
-                                    <li><strong>零运维成本：</strong>无需DevOps人员</li>
-                                    <li><strong>按需付费：</strong>没有请求就不花钱</li>
-                                    <li><strong>自动扩缩：</strong>永不宕机，永不过载</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style="color: #1e40af; margin-bottom: 10px;">🌍 体验优势</h4>
-                                <ul style="margin: 0; padding-left: 20px;">
-                                    <li><strong>全球覆盖：</strong>450+边缘节点</li>
-                                    <li><strong>超低延迟：</strong>海外响应小于50ms</li>
-                                    <li><strong>技术先进：</strong>边缘计算 + 智能路由</li>
-                                    <li><strong>生态完善：</strong>第三方集成最丰富</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style="background: #ffd700; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; color: #000; font-weight: 600;">
-                            💡 结论：AWS的贵主要在基础设施，而Lambda的极致优化让计算成本几乎为零<br>
-                            投资AWS = 投资用户体验 + 技术前瞻性 + 长期竞争力
-                        </div>
-                    </div>
-                </div>
-            ';
-            showModal(costModal);
-        }可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 基础服务</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>欧洲</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">8个区域，25个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">2个区域，6个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 受限服务</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>亚太</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">11个区域，35个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">15个区域，45个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #f59e0b;">阿里云区域更多，但AWS服务更全</td>
-                            </tr>
-                            <tr style="background: #f7fafc;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>中东非洲</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">4个区域，12个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1个区域，3个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS: 全服务 | 阿里: 基础服务</td>
-                            </tr>
-                            <tr style="background: #f0fff4;">
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;"><strong>南美</strong></td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">1个区域，3个可用区</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">0个区域</td>
-                                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #059669;">AWS独有覆盖</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div style="background: linear-gradient(135deg, #ebf8ff, #e6fffa); border-radius: 15px; padding: 25px; margin: 30px 0; border-left: 5px solid #4299e1;">
-                        <h3 style="color: #2b6cb0; margin-bottom: 15px;">🎯 最终推荐</h3>
-                        <div style="margin-bottom: 15px;">
-                            <strong>虽然AWS成本高30%，但对于海外业务仍强烈推荐：</strong>
-                        </div>
-                        <ul style="margin: 15px 0; padding-left: 20px;">
-                            <li><strong>🌍 全球化优势明显：</strong>海外延迟低50%，用户体验显著更好</li>
-                            <li><strong>⚡ 技术生态完善：</strong>服务更新快，第三方集成丰富</li>
-                            <li><strong>🛡️ 安全合规领先：</strong>全球合规认证最全，数据安全保障强</li>
-                            <li><strong>📈 长期ROI更高：</strong>用户体验好带来的收入增长远超成本差异</li>
-                            <li><strong>🔧 运维效率提升：</strong>托管服务减少人力成本，实际TCO更优</li>
-                        </ul>
-                        <div style="background: #ffd700; padding: 10px; border-radius: 8px; margin-top: 15px; text-align: center; color: #000; font-weight: 600;">
-                            💡 结论：投资AWS，投资的是用户体验和长期竞争力
-                        </div>
-                    </div>
-                </div>
-            `;
-            showModal(costModal);
-        }
+            navButtons.forEach(btn => {
+                btn.style.background = '#f7fafc';
+                btn.style.color = '#4a5568';
+                if (btn.getAttribute('href') === '#' + current) {
+                    btn.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                    btn.style.color = 'white';
+                }
+            });
+        });
     </script>
 </body>
 </html>
+                <thead>
+                    <tr>
+                        <th>服务类型</th>
+                        <th>AWS</th>
+                        <th>华为云</th>
+                        <th>阿里云</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>K8s服务</strong></td>
+                        <td>EKS ($0.10/小时)</td>
+                        <td>CCE (免费)</td>
+                        <td>ACK (免费)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>工作节点</strong></td>
+                        <td>14台 m5.xlarge</td>
+                        <td>14台 c6.xlarge.2</td>
+                        <td>14台 c6.xlarge</td>
+                    </tr>
+                    <tr>
+                        <td><strong>数据库</strong></td>
+                        <td>RDS Multi-AZ</td>
+                        <td>RDS双机热备</td>
+                        <td>RDS高可用版</td>
+                    </tr>
+                    <tr>
+                        <td><strong>缓存</strong></td>
+                        <td>ElastiCache集群</td>
+                        <td>DCS主备版</td>
+                        <td>Redis集群版</td>
+                    </tr>
+                    <tr>
+                        <td><strong>存储</strong></td>
+                        <td>S3跨区域复制</td>
+                        <td>OBS多AZ存储</td>
+                        <td>OSS同城冗余</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CDN</strong></td>
+                        <td>CloudFront全球</td>
+                        <td>CDN海外节点</td>
+                        <td>CDN国际版</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="costs" class="section">
+            <h2>💰 海外部署成本对比</h2>
+            
+            <div class="cost-grid">
+                <div class="cost-card aws-card">
+                    <div class="cost-rank rank-1">1</div>
+                    <div class="cost-header">
+                        <div class="cost-title">🔵 AWS (优化后)</div>
+                        <div class="cost-amount">
+                            <div class="cost-amount-usd">$1,098/月</div>
+                            <div class="cost-amount-rmb">¥7,905</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; color: #22c55e; margin-bottom: 15px;">成本最低 (使用Cloudflare)</div>
+                    
+                    <ul class="cost-details">
+                        <li><span>EC2 (14台t3.large)</span><span>¥6,038</span></li>
+                        <li><span>EKS集群</span><span>¥518</span></li>
+                        <li><span>RDS MySQL</span><span>¥353</span></li>
+                        <li><span>ElastiCache</span><span>¥88</span></li>
+                        <li><span>S3存储</span><span>¥331</span></li>
+                        <li><span>Cloudflare Pro</span><span>¥144</span></li>
+                        <li><span>负载均衡监控</span><span>¥432</span></li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e2e8f0; font-weight: bold;">
+                        年度成本: ¥94,860
+                    </div>
+                </div>
+                
+                <div class="cost-card huawei-card">
+                    <div class="cost-rank rank-2">2</div>
+                    <div class="cost-header">
+                        <div class="cost-title">🟠 华为云</div>
+                        <div class="cost-amount">
+                            <div class="cost-amount-usd">$1,281/月</div>
+                            <div class="cost-amount-rmb">¥9,225</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; color: #f87171; margin-bottom: 15px;">比AWS贵16.7%</div>
+                    
+                    <ul class="cost-details">
+                        <li><span>ECS (14台c6.large.2)</span><span>¥5,806</span></li>
+                        <li><span>CCE集群(免费)</span><span>¥0</span></li>
+                        <li><span>RDS MySQL</span><span>¥311</span></li>
+                        <li><span>DCS缓存</span><span>¥155</span></li>
+                        <li><span>OBS存储</span><span>¥288</span></li>
+                        <li><span>CDN加速(8TB)</span><span>¥2,304</span></li>
+                        <li><span>负载均衡</span><span>¥360</span></li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e2e8f0; font-weight: bold;">
+                        年度成本: ¥110,700
+                    </div>
+                </div>
+                
+                <div class="cost-card alibaba-card">
+                    <div class="cost-rank rank-3">3</div>
+                    <div class="cost-header">
+                        <div class="cost-title">🟢 阿里云</div>
+                        <div class="cost-amount">
+                            <div class="cost-amount-usd">$1,299/月</div>
+                            <div class="cost-amount-rmb">¥9,350</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; color: #3b82f6; margin-bottom: 15px;">比AWS贵18.3%</div>
+                    
+                    <ul class="cost-details">
+                        <li><span>ECS (14台c6.large)</span><span>¥5,443</span></li>
+                        <li><span>ACK集群(免费)</span><span>¥0</span></li>
+                        <li><span>RDS MySQL</span><span>¥285</span></li>
+                        <li><span>Redis缓存</span><span>¥130</span></li>
+                        <li><span>OSS存储</span><span>¥288</span></li>
+                        <li><span>CDN加速(8TB)</span><span>¥2,880</span></li>
+                        <li><span>负载均衡</span><span>¥324</span></li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e2e8f0; font-weight: bold;">
+                        年度成本: ¥112,200
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>🎉 AWS成本优化效果</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <h5>优化前 AWS:</h5>
+                        <ul>
+                            <li>CloudFront CDN: $680/月</li>
+                            <li>m5.xlarge实例: $1,935/月</li>
+                            <li><strong>总成本: $3,002/月</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>优化后 AWS:</h5>
+                        <ul>
+                            <li>Cloudflare Pro: $20/月 (节省97%)</li>
+                            <li>t3.large实例: $839/月</li>
+                            <li><strong>总成本: $1,098/月 (节省63.4%)</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>💡 Cloudflare vs CloudFront 对比</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <h5>✅ Cloudflare优势:</h5>
+                        <ul>
+                            <li>成本: $20/月无限流量</li>
+                            <li>全球节点: 300+覆盖</li>
+                            <li>DDoS防护免费</li>
+                            <li>WAF功能内置</li>
+                            <li>Workers边缘计算</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>⚠️ 考虑因素:</h5>
+                        <ul>
+                            <li>需要在两个平台管理</li>
+                            <li>AWS原生集成稍弱</li>
+                            <li>某些企业级功能差异</li>
+                            <li>监控数据分散</li>
+                        </ul>
+                    </div>
+                </div>
+            </div><ul>
+                    <li><strong>阿里云最便宜：</strong>计算实例和CDN价格有优势，ACK免费</li>
+                    <li><strong>华为云稍贵：</strong>比阿里云仅贵2.2%，CCE集群免费，CDN便宜</li>
+                    <li><strong>AWS最贵：</strong>主要贵在CloudFront CDN ($680 vs $320-400) 和EKS管理费</li>
+                    <li><strong>关键差异：</strong>AWS的CloudFront质量高但价格贵，EKS有管理费</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <h2>🏗️ 容器化架构设计</h2>
+            
+            <h3>AWS EKS架构</h3>
+            <div class="architecture-diagram">
+                <div class="diagram-title">AWS 全球容器化架构</div>
+                
+                <div class="layer-title">全球接入层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>Route 53</strong><br>
+                        智能DNS路由<br>
+                        健康检查
+                    </div>
+                    <div class="arch-component">
+                        <strong>CloudFront</strong><br>
+                        450+边缘节点<br>
+                        Lambda@Edge
+                    </div>
+                    <div class="arch-component">
+                        <strong>AWS WAF</strong><br>
+                        Web应用防火墙<br>
+                        DDoS防护
+                    </div>
+                </div>
+                
+                <div class="layer-title">容器编排层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>EKS控制平面</strong><br>
+                        托管K8s集群<br>
+                        $0.10/小时
+                    </div>
+                    <div class="arch-component">
+                        <strong>ALB Ingress</strong><br>
+                        应用负载均衡<br>
+                        SSL终止
+                    </div>
+                    <div class="arch-component">
+                        <strong>EC2节点组</strong><br>
+                        14台m5.xlarge<br>
+                        Auto Scaling
+                    </div>
+                </div>
+                
+                <div class="layer-title">数据存储层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>RDS MySQL</strong><br>
+                        Multi-AZ部署<br>
+                        自动备份
+                    </div>
+                    <div class="arch-component">
+                        <strong>ElastiCache</strong><br>
+                        Redis集群<br>
+                        高可用缓存
+                    </div>
+                    <div class="arch-component">
+                        <strong>S3存储</strong><br>
+                        跨区域复制<br>
+                        多存储类型
+                    </div>
+                </div>
+            </div>
+
+            <h3>华为云CCE架构</h3>
+            <div class="architecture-diagram">
+                <div class="diagram-title">华为云 容器化架构</div>
+                
+                <div class="layer-title">网络接入层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>云解析DNS</strong><br>
+                        智能解析<br>
+                        线路优选
+                    </div>
+                    <div class="arch-component">
+                        <strong>CDN</strong><br>
+                        2800+节点<br>
+                        HTTPS加速
+                    </div>
+                    <div class="arch-component">
+                        <strong>Web防护</strong><br>
+                        AI安全防护<br>
+                        CC攻击防护
+                    </div>
+                </div>
+                
+                <div class="layer-title">容器编排层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>CCE集群</strong><br>
+                        托管K8s<br>
+                        免费管理
+                    </div>
+                    <div class="arch-component">
+                        <strong>ELB负载均衡</strong><br>
+                        四七层负载<br>
+                        会话保持
+                    </div>
+                    <div class="arch-component">
+                        <strong>ECS节点</strong><br>
+                        14台c6.xlarge.2<br>
+                        鲲鹏+X86
+                    </div>
+                </div>
+                
+                <div class="layer-title">数据存储层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>云数据库RDS</strong><br>
+                        MySQL/PostgreSQL<br>
+                        读写分离
+                    </div>
+                    <div class="arch-component">
+                        <strong>分布式缓存DCS</strong><br>
+                        Redis主备<br>
+                        数据持久化
+                    </div>
+                    <div class="arch-component">
+                        <strong>对象存储OBS</strong><br>
+                        海量存储<br>
+                        生命周期管理
+                    </div>
+                </div>
+            </div>
+
+            <h3>阿里云ACK架构</h3>
+            <div class="architecture-diagram">
+                <div class="diagram-title">阿里云 容器化架构</div>
+                
+                <div class="layer-title">网络接入层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>云解析DNS</strong><br>
+                        全球调度<br>
+                        防劫持
+                    </div>
+                    <div class="arch-component">
+                        <strong>CDN</strong><br>
+                        3200+节点<br>
+                        边缘安全
+                    </div>
+                    <div class="arch-component">
+                        <strong>Web应用防火墙</strong><br>
+                        OWASP防护<br>
+                        Bot管理
+                    </div>
+                </div>
+                
+                <div class="layer-title">容器编排层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>ACK集群</strong><br>
+                        托管K8s<br>
+                        免费管理
+                    </div>
+                    <div class="arch-component">
+                        <strong>SLB负载均衡</strong><br>
+                        高性能转发<br>
+                        弹性公网IP
+                    </div>
+                    <div class="arch-component">
+                        <strong>ECS节点</strong><br>
+                        14台c6.xlarge<br>
+                        神龙架构
+                    </div>
+                </div>
+                
+                <div class="layer-title">数据存储层</div>
+                <div class="arch-layer">
+                    <div class="arch-component">
+                        <strong>云数据库RDS</strong><br>
+                        MySQL/PolarDB<br>
+                        一键读写分离
+                    </div>
+                    <div class="arch-component">
+                        <strong>云数据库Redis</strong><br>
+                        集群版<br>
+                        混合存储
+                    </div>
+                    <div class="arch-component">
+                        <strong>对象存储OSS</strong><br>
+                        IA/Archive<br>
+                        跨区域复制
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical" class="section">
+            
+            <table class="comparison-table">
